@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Readyway</title>
+<meta name="description" content="Readyway is the part after the plan. It makes the calls, sends the emails, holds the rooms and pays the deposits — and when it can't, it says so.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127903;</text></svg>">
+<meta property="og:title" content="Readyway">
+<meta property="og:description" content="Your trip is planned. Nobody has booked it. Readyway is the part after the plan.">
+<meta property="og:type" content="website">
+<style>
+  /* A hosted page has no reset behind it, unlike the artifact host. */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img, svg { max-width: 100%; }
+  button { font: inherit; }
+</style>
+<style>
+  /* ============================================================
+     Palette: ticket stock and signal colours.
+     The three accents are not decoration — they are the product's
+     own three states, so the page is coloured by what it means.
+     ============================================================ */
+  :root {
+    --paper:      #F3F3F1;
+    --card:       #FFFFFF;
+    --sunk:       #ECECE9;
+    --ink:        #14171A;
+    --soft:       #545C63;
+    --faint:      #868E96;
+    --rule:       #DEDEDA;
+    --hair:       #E9E9E6;
+
+    --go:         #0E6152;   /* done, and verified */
+    --go-bg:      #E1EDE9;
+    --wait:       #8A6209;   /* working on it */
+    --wait-bg:    #F3EBD9;
+    --hand:       #9C3A2A;   /* handed back to you */
+    --hand-bg:    #F5E3DF;
+
+    --display: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 34rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:  #101315;
+      --card:   #171B1E;
+      --sunk:   #1C2124;
+      --ink:    #E8EAEB;
+      --soft:   #9AA3A9;
+      --faint:  #737C82;
+      --rule:   #272D31;
+      --hair:   #202528;
+
+      --go:      #4FBBA1;
+      --go-bg:   #123029;
+      --wait:    #D2A544;
+      --wait-bg: #32280F;
+      --hand:    #E28470;
+      --hand-bg: #37201B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:  #101315;
+    --card:   #171B1E;
+    --sunk:   #1C2124;
+    --ink:    #E8EAEB;
+    --soft:   #9AA3A9;
+    --faint:  #737C82;
+    --rule:   #272D31;
+    --hair:   #202528;
+
+    --go:      #4FBBA1;
+    --go-bg:   #123029;
+    --wait:    #D2A544;
+    --wait-bg: #32280F;
+    --hand:    #E28470;
+    --hand-bg: #37201B;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ---------- masthead ---------- */
+  header.top {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding: 1.75rem 0 0;
+  }
+  .mark {
+    font-family: var(--display);
+    font-size: 1.35rem; font-weight: 600; letter-spacing: -0.012em;
+  }
+  .mark span { color: var(--go); }
+  .top nav { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+  .top nav a { color: var(--soft); text-decoration: none; }
+  .top nav a:hover { color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 5.5rem 0 3rem; display: grid; grid-template-columns: 1fr; gap: 3rem; }
+  @media (min-width: 62rem) { .hero { grid-template-columns: 1.05fr 0.95fr; align-items: start; gap: 4rem; } }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(2.9rem, 7vw, 4.3rem);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+    text-wrap: balance;
+  }
+  h1 em { font-style: normal; color: var(--go); }
+  .lede { font-size: 1.2rem; line-height: 1.55; color: var(--soft); max-width: var(--measure); margin: 0; }
+  .lede + .lede { margin-top: 1rem; }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; align-items: center; }
+  .button {
+    display: inline-block; background: var(--ink); color: var(--paper);
+    padding: 0.8rem 1.4rem; border-radius: 2px; text-decoration: none;
+    font-size: 0.95rem; font-weight: 550; letter-spacing: 0.01em;
+    transition: transform 120ms ease;
+  }
+  .button:hover { transform: translateY(-1px); }
+  .button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--go); outline-offset: 3px; }
+
+  /* ---------- the ladder: the product's actual mechanism ---------- */
+  .ladder {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .ladder-head {
+    padding: 0.85rem 1.15rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    background: var(--sunk);
+  }
+  .ladder-head b { font-size: 0.93rem; font-weight: 600; }
+  .ladder-head span { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--faint); }
+
+  .rung {
+    display: grid; grid-template-columns: 1.6rem 1fr auto;
+    gap: 0.85rem; align-items: baseline;
+    padding: 0.72rem 1.15rem;
+    border-bottom: 1px solid var(--hair);
+    font-size: 0.93rem;
+    opacity: 0.32;
+  }
+  .rung:last-child { border-bottom: none; }
+  .rung .n { font-family: var(--mono); font-size: 0.72rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .rung .what { color: var(--soft); }
+  .rung .what b { color: var(--ink); font-weight: 600; display: block; font-size: 0.95rem; }
+  .rung .verdict { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; }
+
+  .rung.lit { opacity: 1; }
+  .rung.lit .verdict { color: var(--faint); }
+  .rung.caught { opacity: 1; background: var(--go-bg); }
+  .rung.caught .verdict { color: var(--go); font-weight: 700; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .rung { transition: opacity 260ms ease, background-color 260ms ease; }
+  }
+
+  .ladder-foot {
+    padding: 0.9rem 1.15rem; border-top: 1px solid var(--rule);
+    font-size: 0.85rem; color: var(--soft); background: var(--sunk);
+    display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+  }
+  .replay {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+    background: none; border: 1px solid var(--rule); color: var(--soft);
+    padding: 0.3rem 0.6rem; border-radius: 2px; cursor: pointer;
+  }
+  .replay:hover { color: var(--ink); border-color: var(--faint); }
+
+  /* ---------- sections ---------- */
+  section { padding: 4.5rem 0; border-top: 1px solid var(--rule); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--faint); margin: 0 0 0.9rem;
+  }
+  h2 {
+    font-family: var(--display); font-size: clamp(1.9rem, 4vw, 2.6rem);
+    line-height: 1.14; letter-spacing: -0.015em; font-weight: 600;
+    margin: 0 0 1.1rem; text-wrap: balance; max-width: 22ch;
+  }
+  section > .wrap > p { max-width: var(--measure); color: var(--soft); margin: 0 0 1rem; }
+  section > .wrap > p strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- the refusal: the centrepiece ---------- */
+  .refusal {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 3px;
+    padding: clamp(2.25rem, 5vw, 3.75rem);
+    display: grid; gap: 2rem;
+  }
+  @media (min-width: 56rem) { .refusal { grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; } }
+  .refusal h2 { color: var(--paper); margin: 0 0 1rem; max-width: 18ch; }
+  .refusal p { color: color-mix(in srgb, var(--paper) 72%, transparent); margin: 0 0 0.9rem; max-width: 40ch; }
+  .refusal p:last-child { margin-bottom: 0; }
+  .receipt {
+    background: color-mix(in srgb, var(--paper) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--paper) 16%, transparent);
+    border-radius: 2px; padding: 1.4rem;
+    font-family: var(--mono); font-size: 0.82rem; line-height: 1.85;
+  }
+  .receipt div { display: flex; justify-content: space-between; gap: 1.5rem; }
+  .receipt .k { color: color-mix(in srgb, var(--paper) 55%, transparent); }
+  .receipt .v { text-align: right; }
+  .receipt .ok { color: #6FD3B8; }
+  .receipt .no { color: #F0A08D; }
+  .receipt hr { border: none; border-top: 1px dashed color-mix(in srgb, var(--paper) 22%, transparent); margin: 0.8rem 0; }
+
+  /* ---------- grids ---------- */
+  .grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin-top: 2.25rem; }
+  @media (min-width: 44rem) { .grid.two { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 60rem) { .grid.three { grid-template-columns: repeat(3, 1fr); } }
+  .cell { background: var(--card); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .cell h3 { margin: 0; font-size: 1.02rem; font-weight: 620; letter-spacing: -0.005em; }
+  .cell p { margin: 0; font-size: 0.93rem; color: var(--soft); }
+  .cell .tag {
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  /* ---------- steps ---------- */
+  .steps { display: grid; gap: 0; margin-top: 2.25rem; counter-reset: step; }
+  .step {
+    display: grid; grid-template-columns: 2.6rem 1fr; gap: 1.25rem;
+    padding: 1.5rem 0; border-top: 1px solid var(--hair);
+  }
+  .step:first-child { border-top: none; }
+  .step::before {
+    counter-increment: step; content: counter(step, decimal-leading-zero);
+    font-family: var(--mono); font-size: 0.78rem; color: var(--go);
+    font-variant-numeric: tabular-nums; padding-top: 0.22rem;
+  }
+  .step h3 { margin: 0 0 0.35rem; font-size: 1.05rem; font-weight: 620; }
+  .step p { margin: 0; color: var(--soft); font-size: 0.95rem; max-width: 46ch; }
+
+  /* ---------- close ---------- */
+  .close { text-align: center; padding: 6rem 0; border-top: 1px solid var(--rule); }
+  .close h2 { margin: 0 auto 1.1rem; max-width: 16ch; }
+  .close p { margin: 0 auto; max-width: 34rem; color: var(--soft); }
+  .close .cta { justify-content: center; }
+
+  footer {
+    border-top: 1px solid var(--rule); padding: 2rem 0 3rem;
+    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+    font-size: 0.85rem; color: var(--faint);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="mark">Ready<span>way</span></div>
+    <nav>
+      <a href="#ladder">How it works</a>
+      <a href="#honest">Honesty</a>
+      <a href="#connected">Connected</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Your trip is planned. <em>Nobody has booked it.</em></h1>
+      <p class="lede">Every travel tool ends at a beautiful itinerary. Then someone — you — spends a fortnight on hold, refreshing release pages, and emailing a hotel in another timezone about connecting rooms.</p>
+      <p class="lede">Readyway is the part after the plan. It makes the calls, sends the emails, holds the rooms, and pays the deposits. And when it can't, it says so.</p>
+      <div class="cta">
+        <a class="button" href="#connected">See what it books</a>
+        <a class="button ghost" href="#honest">Read the honest part</a>
+      </div>
+    </div>
+
+    <div class="ladder" id="ladder">
+      <div class="ladder-head">
+        <b>Dinner for four · Saturday, 19:30</b>
+        <span>live</span>
+      </div>
+      <div class="rung" data-rung>
+        <span class="n">01</span>
+        <span class="what"><b>Supplier API</b>Direct booking, if one exists</span>
+        <span class="verdict" data-verdict>no api</span>
+      </div>
+      <div class="rung" data-rung>
+        <span class="n">02</span>
+        <span class="what"><b>Known flow</b>A form it has filled before</span>
+        <span class="verdict" data-verdict>not seen</span>
+      </div>
+      <div class="rung" data-rung>
+        <span class="n">03</span>
+        <span class="what"><b>Browser agent</b>Works the site out live</span>
+        <span class="verdict" data-verdict>no slot</span>
+      </div>
+      <div class="rung" data-rung>
+        <span class="n">04</span>
+        <span class="what"><b>Email</b>Writes, waits, reads the reply</span>
+        <span class="verdict" data-verdict>no answer</span>
+      </div>
+      <div class="rung" data-rung>
+        <span class="n">05</span>
+        <span class="what"><b>Telephone</b>Speaks to whoever picks up</span>
+        <span class="verdict" data-verdict>booked</span>
+      </div>
+      <div class="rung" data-rung>
+        <span class="n">06</span>
+        <span class="what"><b>Handed to you</b>With everything it learned</span>
+        <span class="verdict" data-verdict>not needed</span>
+      </div>
+      <div class="ladder-foot">
+        <span>It stops at the first rung that works.</span>
+        <button class="replay" type="button" data-replay>Replay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">The idea</p>
+    <h2>Booking is not one problem. It is seven.</h2>
+    <p>Some things have an API. Some have a website that changes every quarter. Some have a person who answers a phone at eleven in the morning and nothing else. A tool that only knows one of those can only book a slice of your trip.</p>
+    <p>Readyway tries each in turn and stops at the first that works. A task that reaches the last rung has been genuinely attempted six ways, and arrives with everything the earlier attempts learned attached to it — <strong>not as a failure, as a shortlist.</strong></p>
+
+    <div class="grid three">
+      <div class="cell"><span class="tag">Flights</span><h3>Bought and read back</h3><p>Fares held, ticketed, then fetched again from the airline before anyone is told it is done.</p></div>
+      <div class="cell"><span class="tag">Hotels</span><h3>Refundable by default</h3><p>It looks for a rate you can walk away from, and asks before committing to one you can't.</p></div>
+      <div class="cell"><span class="tag">Restaurants</span><h3>Actually telephoned</h3><p>Where there is no booking system, there is a phone call — and a policy engine deciding what may be agreed to.</p></div>
+      <div class="cell"><span class="tag">Activities</span><h3>Held at the moment of release</h3><p>Tickets that go on sale at nine are bought at nine, not whenever someone remembers.</p></div>
+      <div class="cell"><span class="tag">Vendors</span><h3>Chased over email</h3><p>It writes, waits days if it has to, reads the reply, and answers it.</p></div>
+      <div class="cell"><span class="tag">Money</span><h3>Never in a prompt</h3><p>Card details never reach a language model. Spending limits are enforced in code, outside anything that reasons.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="honest">
+  <div class="wrap">
+    <div class="refusal">
+      <div>
+        <p class="eyebrow" style="color: color-mix(in srgb, var(--paper) 50%, transparent)">The part nobody advertises</p>
+        <h2>It would rather hand your trip back than lie about it.</h2>
+        <p>An autonomous booking agent that is wrong 5% of the time is not 95% useful. It is unusable, because you now have to check all of it — and checking is the work you were trying to avoid.</p>
+        <p>So the whole system is built around one rule: <strong style="color: var(--paper)">an attempt is never a booking.</strong> Nothing is marked confirmed until it has been read back from the supplier. If a payment goes through and the confirmation doesn't, it stops and asks a human rather than risking a second charge.</p>
+        <p>A lane that isn't connected declines. It does not improvise, and it does not guess.</p>
+      </div>
+      <div class="receipt">
+        <div><span class="k">Le Bristol · 3 nights</span><span class="v ok">booked · read back</span></div>
+        <div><span class="k">AF83 · SFO→CDG</span><span class="v ok">ticketed · QFVGMN</span></div>
+        <div><span class="k">Louvre · private guide</span><span class="v ok">held · pays 09:00</span></div>
+        <hr>
+        <div><span class="k">Clover Gordes</span><span class="v no">handed back</span></div>
+        <div><span class="k">— why</span><span class="v">deposit €180, over your €150</span></div>
+        <div><span class="k">— found</span><span class="v">two tables, both 21:45</span></div>
+        <hr>
+        <div><span class="k">false confirmations</span><span class="v ok">0</span></div>
+        <div><span class="k">double bookings</span><span class="v ok">0</span></div>
+        <div><span class="k">charged, nothing held</span><span class="v ok">0</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Under it</p>
+    <h2>How a booking is made safe</h2>
+    <p>Every supplier, every lane, and every payment runs the same sequence. It is written once, so a new supplier inherits the care rather than reinventing it.</p>
+
+    <div class="steps">
+      <div class="step"><div><h3>Quote before commit</h3><p>The price is known before any money moves. A price that changes between quote and payment stops the booking.</p></div></div>
+      <div class="step"><div><h3>The policy decides, not the model</h3><p>Times, deposits, cancellation terms and party size are checked by code. The agent reports what it was offered; it does not get a vote.</p></div></div>
+      <div class="step"><div><h3>Pay, then commit</h3><p>Funds are authorised and held. Only then is the supplier asked to commit, with an idempotency key so a retry cannot buy twice.</p></div></div>
+      <div class="step"><div><h3>Read it back</h3><p>The booking is fetched fresh from the supplier and compared with what was asked for. A mismatch is a failure, however encouraging the response looked.</p></div></div>
+      <div class="step"><div><h3>Unwind cleanly</h3><p>If anything downstream fails, the hold is cancelled and the money refunded — and the refund is recorded, not assumed.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="connected">
+  <div class="wrap">
+    <p class="eyebrow">Wired in</p>
+    <h2>Real systems, not a demo</h2>
+    <p>Readyway holds accounts with the systems that actually take bookings, and speaks each one's protocol properly — signatures, idempotency keys, two-phase commits and all.</p>
+
+    <div class="grid two">
+      <div class="cell"><span class="tag">Air</span><h3>Duffel</h3><p>Offer requests, orders, and order retrieval for the read-back.</p></div>
+      <div class="cell"><span class="tag">Rooms</span><h3>Nuitée · LiteAPI</h3><p>Rates, prebook, book — walking past rates the supplier won't honour.</p></div>
+      <div class="cell"><span class="tag">Experiences</span><h3>TourCMS</h3><p>Signed requests against live operator inventory and real cancellation policy.</p></div>
+      <div class="cell"><span class="tag">Payments</span><h3>Stripe</h3><p>Manual capture, 3-D Secure, and a ledger the model cannot reach.</p></div>
+      <div class="cell"><span class="tag">Correspondence</span><h3>Resend</h3><p>Outbound mail and signed inbound webhooks, threaded to the task that sent them.</p></div>
+      <div class="cell"><span class="tag">Voice</span><h3>Live telephony</h3><p>Real-time speech in both directions, with the reservation policy held outside the voice.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="close">
+    <h2>Bring a plan. Any plan.</h2>
+    <p>A document from your travel agent, a spreadsheet you have been adding to for months, a plan somebody's chatbot wrote, or a forwarded pile of confirmation emails. Readyway reads it, works out what has to happen, and starts.</p>
+    <div class="cta">
+      <a class="button" href="#ladder">Hand over a trip</a>
+      <a class="button ghost" href="#honest">See what it refuses</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>Readyway — the part after the plan.</span>
+    <span>An attempt is never a booking.</span>
+  </footer>
+</div>
+
+<script>
+  /* The ladder resolves once on load: the product's mechanism, demonstrated
+     rather than described. Each rung declines in turn until one catches. */
+  (function () {
+    const rungs = Array.from(document.querySelectorAll("[data-rung]"));
+    const caughtAt = 4; /* the telephone */
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const settle = () => {
+      rungs.forEach((rung) => rung.classList.remove("lit", "caught"));
+      if (still) {
+        rungs.forEach((rung, index) => rung.classList.add(index === caughtAt ? "caught" : "lit"));
+        return;
+      }
+      rungs.forEach((rung, index) => {
+        window.setTimeout(() => {
+          rung.classList.add(index === caughtAt ? "caught" : "lit");
+        }, 380 + index * 460);
+      });
+    };
+
+    const button = document.querySelector("[data-replay]");
+    if (button) button.addEventListener("click", settle);
+
+    /* Start when it is actually on screen, not while it is still below the fold. */
+    const target = document.getElementById("ladder");
+    if (target && "IntersectionObserver" in window) {
+      const watcher = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          settle();
+          watcher.disconnect();
+        }
+      }, { threshold: 0.35 });
+      watcher.observe(target);
+    } else {
+      settle();
+    }
+  })();
+</script>
+</body>
+</html>
