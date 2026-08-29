@@ -4,249 +4,278 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ashore</title>
-<meta name="description" content="Your trip is planned. Nobody has booked it. Ashore calls, writes, holds and pays — and the moment it is unsure, it stops and tells you.">
+<meta name="description" content="Give us the trip. We handle the rest. Ashore books the flights, rooms, tables and tickets between a finished plan and a family getting on a plane — and hands back anything it cannot do honestly.">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://ashore.travel/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%23121418%22/><circle cx=%2250%22 cy=%2250%22 r=%2217%22 fill=%22%230D7C66%22/></svg>">
-<meta property="og:title" content="Ashore">
-<meta property="og:description" content="Your trip is planned. Nobody has booked it.">
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%23111419%22/><circle cx=%2250%22 cy=%2250%22 r=%2217%22 fill=%22%230D7C66%22/></svg>">
+<meta property="og:title" content="Ashore — give us the trip, we handle the rest">
+<meta property="og:description" content="The work between a finished plan and a family getting on a plane.">
 <meta property="og:url" content="https://ashore.travel/">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200&q=70&auto=format&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
 <style>html{-webkit-text-size-adjust:100%}img,svg{max-width:100%}button{font:inherit}</style>
 <style>
-  :root {
-    --paper:#FCFCFB; --card:#FFFFFF; --sunk:#F5F5F3;
-    --ink:#121418; --body:#585F6C; --faint:#9AA0AB;
-    --line:#E8E8E5; --hair:#F1F1EF;
-    --go:#0D7C66; --go-soft:#E4F2EF;
-    --wait:#B07C10; --wait-soft:#FBF1DC;
-    --back:#B84630; --back-soft:#FBE9E5;
-    --lift1:0 1px 2px rgba(18,20,24,.05),0 4px 14px rgba(18,20,24,.04);
-    --lift2:0 2px 6px rgba(18,20,24,.06),0 18px 44px rgba(18,20,24,.08);
-    --lift3:0 6px 14px rgba(18,20,24,.07),0 36px 90px rgba(18,20,24,.12);
+  :root{
+    --paper:#FCFCFB;--card:#FFF;--sunk:#F5F5F3;--deep:#101317;
+    --ink:#111419;--body:#565D6A;--faint:#989EA9;--line:#E8E8E5;--hair:#F1F1EF;
+    --go:#0D7C66;--go-soft:#E3F2EE;--wait:#AE7A10;--wait-soft:#FAF0DB;--back:#B54530;--back-soft:#FAE8E4;
+    --l1:0 1px 2px rgba(17,20,25,.05),0 4px 14px rgba(17,20,25,.04);
+    --l2:0 2px 6px rgba(17,20,25,.06),0 18px 44px rgba(17,20,25,.08);
+    --l3:0 8px 18px rgba(17,20,25,.08),0 40px 100px rgba(17,20,25,.14);
     --sans:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
     --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
     --ease:cubic-bezier(.16,1,.3,1);
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#0B0D11; --card:#13161C; --sunk:#0F1217;
-    --ink:#EDF0F5; --body:#A0A8B6; --faint:#6C7484;
-    --line:#222732; --hair:#1A1E26;
-    --go:#4FD0B1; --go-soft:#0F2E28;
-    --wait:#E2AE57; --wait-soft:#2D2412;
-    --back:#F28C74; --back-soft:#33201B;
-    --lift1:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
-    --lift2:0 2px 6px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.4);
-    --lift3:0 6px 14px rgba(0,0,0,.5),0 36px 90px rgba(0,0,0,.55);
+    --paper:#0A0C10;--card:#12151B;--sunk:#0E1116;--deep:#07090C;
+    --ink:#ECEFF4;--body:#9EA6B4;--faint:#6A7282;--line:#212630;--hair:#191D25;
+    --go:#4FD0B1;--go-soft:#0E2C26;--wait:#E1AD56;--wait-soft:#2C2311;--back:#F28C74;--back-soft:#321F1A;
+    --l1:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    --l2:0 2px 6px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.4);
+    --l3:0 8px 18px rgba(0,0,0,.5),0 40px 100px rgba(0,0,0,.6);
   }}
   :root[data-theme="dark"]{
-    --paper:#0B0D11; --card:#13161C; --sunk:#0F1217;
-    --ink:#EDF0F5; --body:#A0A8B6; --faint:#6C7484;
-    --line:#222732; --hair:#1A1E26;
-    --go:#4FD0B1; --go-soft:#0F2E28;
-    --wait:#E2AE57; --wait-soft:#2D2412;
-    --back:#F28C74; --back-soft:#33201B;
-    --lift1:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
-    --lift2:0 2px 6px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.4);
-    --lift3:0 6px 14px rgba(0,0,0,.5),0 36px 90px rgba(0,0,0,.55);
+    --paper:#0A0C10;--card:#12151B;--sunk:#0E1116;--deep:#07090C;
+    --ink:#ECEFF4;--body:#9EA6B4;--faint:#6A7282;--line:#212630;--hair:#191D25;
+    --go:#4FD0B1;--go-soft:#0E2C26;--wait:#E1AD56;--wait-soft:#2C2311;--back:#F28C74;--back-soft:#321F1A;
+    --l1:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    --l2:0 2px 6px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.4);
+    --l3:0 8px 18px rgba(0,0,0,.5),0 40px 100px rgba(0,0,0,.6);
   }
-
   *{box-sizing:border-box}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
   .wrap{max-width:70rem;margin:0 auto;padding:0 1.5rem}
-  a{color:inherit}
-  ::selection{background:var(--go-soft)}
+  a{color:inherit}::selection{background:var(--go-soft)}
+  img{display:block;max-width:100%}
 
   .rise{opacity:0;transform:translateY(20px)}
-  @media (prefers-reduced-motion:no-preference){.rise{transition:opacity .75s var(--ease),transform .75s var(--ease)}}
+  @media (prefers-reduced-motion:no-preference){.rise{transition:opacity .8s var(--ease),transform .8s var(--ease)}}
   .rise.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none}}
 
-  /* nav */
-  nav.bar{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(16px);
-    background:color-mix(in srgb,var(--paper) 80%,transparent);border-bottom:1px solid var(--hair)}
-  nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .mark{font-weight:700;letter-spacing:-.025em;font-size:1.1rem}
-  .mark b{color:var(--go)}
-  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;padding:.6rem 1.05rem;
+  nav.bar{position:fixed;top:0;left:0;right:0;z-index:60;backdrop-filter:saturate(180%) blur(16px);
+    background:rgba(10,12,16,.42);border-bottom:1px solid rgba(255,255,255,.09)}
+  nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .mark{font-weight:700;letter-spacing:-.025em;font-size:1.12rem;color:#fff}
+  .mark b{color:#4FD0B1}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;padding:.6rem 1.1rem;
     border-radius:9px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);white-space:nowrap}
   @media (prefers-reduced-motion:no-preference){.btn{transition:transform .25s var(--ease),box-shadow .25s var(--ease)}}
-  .btn:hover{transform:translateY(-2px);box-shadow:var(--lift2)}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--l2)}
+  .btn.light{background:#fff;color:#111419;border-color:#fff}
+  .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.42)}
   .btn.soft{background:var(--card);color:var(--ink);border-color:var(--line)}
   a:focus-visible,button:focus-visible{outline:2px solid var(--go);outline-offset:3px;border-radius:6px}
 
-  /* hero */
-  .hero{padding:6rem 0 3rem;text-align:center}
-  h1{font-size:clamp(2.8rem,7vw,5rem);line-height:.97;letter-spacing:-.045em;font-weight:700;
-    margin:0 auto 1.5rem;max-width:15ch;text-wrap:balance}
-  h1 em{font-style:normal;color:var(--faint)}
-  .lede{font-size:clamp(1.05rem,1.8vw,1.2rem);color:var(--body);max-width:42ch;margin:0 auto}
-  .cta{display:flex;gap:.7rem;justify-content:center;margin-top:2.2rem;flex-wrap:wrap}
+  /* ---- hero, photographed ---- */
+  .hero{position:relative;min-height:min(92vh,820px);display:flex;align-items:flex-end;
+    background:#0E1420;overflow:hidden}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%}
+  .hero .scrim{position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,11,18,.62) 0%,rgba(8,11,18,.24) 34%,rgba(8,11,18,.82) 100%)}
+  .hero .wrap{position:relative;z-index:2;padding-top:7rem;padding-bottom:4.5rem;color:#fff}
+  .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:rgba(255,255,255,.72);margin:0 0 1.1rem;font-weight:600}
+  h1{font-size:clamp(2.7rem,6.4vw,4.7rem);line-height:1;letter-spacing:-.045em;font-weight:700;
+    margin:0 0 1.3rem;max-width:16ch;text-wrap:balance;color:#fff}
+  .hero p{font-size:clamp(1.05rem,1.8vw,1.24rem);color:rgba(255,255,255,.82);max-width:46ch;margin:0}
+  .hcta{display:flex;gap:.7rem;margin-top:2.2rem;flex-wrap:wrap}
 
-  /* ========== THE PIPELINE ========== */
-  .rig{margin:4rem auto 0;max-width:64rem;background:var(--card);border:1px solid var(--line);
-    border-radius:20px;box-shadow:var(--lift3);overflow:hidden}
-  .rigbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.2rem;
-    border-bottom:1px solid var(--hair);background:var(--sunk)}
-  .job{display:flex;align-items:center;gap:.6rem;font-size:.9rem;font-weight:600;letter-spacing:-.01em}
-  .job i{width:7px;height:7px;border-radius:50%;background:var(--wait);flex:none}
-  @media (prefers-reduced-motion:no-preference){.job i{animation:bl 1.2s steps(2,end) infinite}
-    @keyframes bl{50%{opacity:.25}}}
-  .job.done i{background:var(--go);animation:none}
-  .rigbar em{font-family:var(--mono);font-size:.7rem;color:var(--faint);font-style:normal;letter-spacing:.06em}
-
-  .track{position:relative;padding:2.8rem 1.5rem 1.2rem}
-  .rail{position:absolute;left:calc(1.5rem + 22px);right:calc(1.5rem + 22px);top:3.55rem;height:2px;background:var(--line);border-radius:2px}
-  .rail .fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--go),var(--wait));border-radius:2px}
-  @media (prefers-reduced-motion:no-preference){.rail .fill{transition:width 1.1s var(--ease)}}
-
-  .stops{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem}
-  .stop{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-align:center}
-  .bulb{width:44px;height:44px;border-radius:50%;background:var(--card);border:2px solid var(--line);
-    display:grid;place-items:center;position:relative;z-index:2;color:var(--faint)}
-  @media (prefers-reduced-motion:no-preference){
-    .bulb{transition:border-color .45s var(--ease),color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease)}}
-  .bulb svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .stop .nm{font-size:.8rem;font-weight:600;letter-spacing:-.01em}
-  .stop .vd{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);min-height:1em}
-
-  .stop.act .bulb{border-color:var(--wait);color:var(--wait);transform:scale(1.12);box-shadow:0 0 0 6px var(--wait-soft)}
-  .stop.miss .bulb{border-color:var(--line);color:var(--faint);opacity:.5}
-  .stop.miss .nm{opacity:.5}
-  .stop.miss .vd{color:var(--back)}
-  .stop.win .bulb{border-color:var(--go);color:var(--go);transform:scale(1.14);box-shadow:0 0 0 8px var(--go-soft)}
-  .stop.win .vd{color:var(--go);font-weight:700}
-  @media (prefers-reduced-motion:no-preference){
-    .stop.act .bulb{animation:hum 1.5s ease-in-out infinite}
-    @keyframes hum{0%,100%{box-shadow:0 0 0 6px var(--wait-soft)}50%{box-shadow:0 0 0 12px transparent}}}
-
-  /* the call theatre */
-  .call{border-top:1px solid var(--hair);background:var(--sunk);padding:1.2rem 1.5rem;min-height:132px}
-  .wave{display:flex;align-items:center;gap:3px;height:26px;margin-bottom:.85rem;opacity:0}
-  @media (prefers-reduced-motion:no-preference){.wave{transition:opacity .4s}}
-  .wave.on{opacity:1}
-  .wave i{width:3px;height:20%;background:var(--go);border-radius:2px;display:block}
-  @media (prefers-reduced-motion:no-preference){
-    .wave.on i{animation:vu .9s ease-in-out infinite}
-    @keyframes vu{0%,100%{height:18%}50%{height:100%}}}
-  .said{display:flex;flex-direction:column;gap:.34rem;font-size:.88rem}
-  .said p{margin:0;opacity:0;transform:translateY(6px);display:flex;gap:.6rem;align-items:baseline}
-  @media (prefers-reduced-motion:no-preference){.said p{transition:opacity .45s var(--ease),transform .45s var(--ease)}}
-  .said p.in{opacity:1;transform:none}
-  .said b{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);min-width:4.2rem;flex:none}
-  .said .them{color:var(--body)}
-  .said .us{color:var(--ink);font-weight:500}
-
-  .verdict{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.5rem;border-top:1px solid var(--hair);
-    background:var(--card);font-size:.9rem;opacity:0}
-  @media (prefers-reduced-motion:no-preference){.verdict{transition:opacity .5s var(--ease)}}
-  .verdict.on{opacity:1}
-  .tick{width:22px;height:22px;flex:none}
-  .tick circle{fill:none;stroke:var(--go);stroke-width:2;opacity:.28}
-  .tick path{fill:none;stroke:var(--go);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:26;stroke-dashoffset:26}
-  .verdict.on .tick path{stroke-dashoffset:0}
-  @media (prefers-reduced-motion:no-preference){.verdict.on .tick path{transition:stroke-dashoffset .6s var(--ease) .15s}}
-  .verdict b{font-weight:650}
-  .verdict span{color:var(--faint);font-family:var(--mono);font-size:.76rem;margin-left:auto}
-
-  /* sections */
-  section{padding:6.5rem 0;border-top:1px solid var(--hair)}
+  /* ---- the real trip ---- */
+  .lead{padding:6.5rem 0 0}
   .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--go);margin:0 0 1rem;font-weight:600}
-  h2{font-size:clamp(1.95rem,4vw,2.9rem);line-height:1.06;letter-spacing:-.035em;font-weight:700;margin:0 0 1rem;max-width:18ch;text-wrap:balance}
-  .sub{font-size:1.04rem;color:var(--body);max-width:50ch;margin:0}
+  h2{font-size:clamp(1.95rem,4vw,2.9rem);line-height:1.06;letter-spacing:-.035em;font-weight:700;margin:0 0 1rem;max-width:19ch;text-wrap:balance}
+  .sub{font-size:1.05rem;color:var(--body);max-width:52ch;margin:0}
+
+  .trip{margin-top:3rem;background:var(--card);border:1px solid var(--line);border-radius:20px;
+    box-shadow:var(--l3);overflow:hidden}
+  .tripbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.95rem 1.3rem;
+    border-bottom:1px solid var(--hair);background:var(--sunk)}
+  .tripbar .t{display:flex;align-items:center;gap:.6rem;font-weight:650;font-size:.94rem;letter-spacing:-.012em}
+  .tripbar .t i{width:7px;height:7px;border-radius:50%;background:var(--wait);flex:none}
+  @media (prefers-reduced-motion:no-preference){.tripbar .t i{animation:bl 1.2s steps(2,end) infinite}@keyframes bl{50%{opacity:.25}}}
+  .tripbar.done .t i{background:var(--go);animation:none}
+  .tripbar em{font-family:var(--mono);font-size:.71rem;color:var(--faint);font-style:normal;letter-spacing:.05em}
+
+  .row{display:grid;grid-template-columns:2.1rem 1fr auto;gap:.9rem;align-items:center;
+    padding:.95rem 1.3rem;border-top:1px solid var(--hair);opacity:0;transform:translateY(8px)}
+  @media (prefers-reduced-motion:no-preference){.row{transition:opacity .5s var(--ease),transform .5s var(--ease),background-color .5s}}
+  .row.in{opacity:1;transform:none}
+  .row:first-of-type{border-top:0}
+  .ico{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--sunk);color:var(--faint)}
+  .ico svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .row .m{min-width:0}
+  .row .m strong{display:block;font-size:.95rem;font-weight:640;letter-spacing:-.013em}
+  .row .m span{font-size:.81rem;color:var(--faint)}
+  .row .m span b{font-family:var(--mono);font-size:.73rem;color:var(--body);font-weight:500}
+  .state{font-family:var(--mono);font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+    padding:.32rem .55rem;border-radius:6px;background:var(--sunk);color:var(--faint);white-space:nowrap}
+  @media (prefers-reduced-motion:no-preference){.state{transition:background-color .45s,color .45s}}
+  .state.w{background:var(--wait-soft);color:var(--wait)}
+  .state.g{background:var(--go-soft);color:var(--go)}
+  .state.b{background:var(--back-soft);color:var(--back)}
+  .row.hot{background:var(--wait-soft)}
+  .row.flag{background:var(--back-soft)}
+  .dotp{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;margin-right:.35rem;vertical-align:1px}
+  @media (prefers-reduced-motion:no-preference){.state.w .dotp{animation:bl 1s steps(2,end) infinite}}
+
+  /* the call, inline */
+  .callstrip{border-top:1px solid var(--hair);background:var(--deep);color:#fff;padding:0 1.3rem;max-height:0;overflow:hidden}
+  @media (prefers-reduced-motion:no-preference){.callstrip{transition:max-height .7s var(--ease),padding .5s}}
+  .callstrip.open{max-height:280px;padding:1.15rem 1.3rem}
+  .wv{display:flex;align-items:center;gap:3px;height:22px;margin-bottom:.8rem}
+  .wv i{width:3px;height:20%;background:#4FD0B1;border-radius:2px;display:block}
+  @media (prefers-reduced-motion:no-preference){.callstrip.open .wv i{animation:vu .85s ease-in-out infinite}
+    @keyframes vu{0%,100%{height:16%}50%{height:100%}}}
+  .callstrip p{margin:0 0 .3rem;font-size:.86rem;display:flex;gap:.65rem;opacity:0;transform:translateY(5px)}
+  @media (prefers-reduced-motion:no-preference){.callstrip p{transition:opacity .4s var(--ease),transform .4s var(--ease)}}
+  .callstrip p.in{opacity:1;transform:none}
+  .callstrip b{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+    color:rgba(255,255,255,.42);min-width:4rem;flex:none}
+  .callstrip .them{color:rgba(255,255,255,.7)}
+  .callstrip .us{color:#fff}
+
+  .tripfoot{display:flex;flex-wrap:wrap;gap:.5rem 2rem;padding:1rem 1.3rem;border-top:1px solid var(--hair);
+    background:var(--sunk);font-family:var(--mono);font-size:.73rem;color:var(--faint)}
+  .tripfoot b{color:var(--ink);font-weight:600}
+
+  /* ---- sections ---- */
+  section{padding:7rem 0;border-top:1px solid var(--hair)}
   .center{text-align:center}.center h2,.center .sub{margin-left:auto;margin-right:auto}
+
+  .band{position:relative;min-height:400px;display:flex;align-items:center;overflow:hidden;background:#12161E;border:0;padding:0}
+  .band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%}
+  .band .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,11,18,.9) 0%,rgba(8,11,18,.55) 55%,rgba(8,11,18,.25) 100%)}
+  .band .wrap{position:relative;z-index:2;padding-top:5rem;padding-bottom:5rem;color:#fff}
+  .band h2{color:#fff;max-width:16ch}
+  .band p{color:rgba(255,255,255,.78);max-width:44ch;margin:0 0 .8rem;font-size:1rem}
+  .band p:last-child{margin:0}
+  .band strong{color:#fff}
 
   .cards{display:grid;gap:1rem;margin-top:3.2rem}
   @media(min-width:46rem){.cards{grid-template-columns:1fr 1fr}}
   @media(min-width:66rem){.cards.three{grid-template-columns:repeat(3,1fr)}}
   .c{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:1.6rem 1.5rem}
   @media (prefers-reduced-motion:no-preference){.c{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}}
-  .c:hover{transform:translateY(-4px);box-shadow:var(--lift2)}
+  .c:hover{transform:translateY(-4px);box-shadow:var(--l2)}
   .c .tag{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--go);font-weight:600}
-  .c h3{margin:.55rem 0 .4rem;font-size:1.03rem;font-weight:650;letter-spacing:-.015em}
+  .c h3{margin:.55rem 0 .4rem;font-size:1.02rem;font-weight:650;letter-spacing:-.015em}
   .c p{margin:0;font-size:.9rem;color:var(--body)}
 
-  .refuse{margin-top:3.2rem;background:var(--ink);color:var(--paper);border-radius:20px;overflow:hidden;display:grid;box-shadow:var(--lift3)}
-  @media(min-width:60rem){.refuse{grid-template-columns:1fr 1fr}}
-  .refuse .say{padding:clamp(2rem,4vw,3rem)}
-  .refuse .say h2{color:var(--paper);margin-bottom:1.1rem}
-  .refuse .say p{color:color-mix(in srgb,var(--paper) 66%,transparent);margin:0 0 .85rem;max-width:40ch;font-size:.97rem}
-  .refuse .say p:last-child{margin:0}
-  .refuse .say strong{color:var(--paper)}
-  .ledger{background:color-mix(in srgb,var(--paper) 6%,transparent);border-left:1px solid color-mix(in srgb,var(--paper) 12%,transparent);
-    padding:clamp(1.7rem,3vw,2.4rem);font-family:var(--mono);font-size:.79rem;line-height:2.05}
-  .ledger div{display:flex;justify-content:space-between;gap:1.2rem}
-  .ledger .k{color:color-mix(in srgb,var(--paper) 46%,transparent)}
-  .ledger .ok{color:#4FD0B1}.ledger .no{color:#F28C74}
-  .ledger hr{border:0;border-top:1px dashed color-mix(in srgb,var(--paper) 18%,transparent);margin:.85rem 0}
+  .steps{margin-top:3rem;max-width:46rem}
+  .st{display:grid;grid-template-columns:2.5rem 1fr;gap:1.2rem;padding:1.4rem 0;border-top:1px solid var(--hair)}
+  .st:first-child{border-top:0}
+  .st .num{font-family:var(--mono);font-size:.77rem;color:var(--go);font-variant-numeric:tabular-nums;padding-top:.18rem;font-weight:600}
+  .st h3{margin:0 0 .28rem;font-size:1rem;font-weight:650;letter-spacing:-.015em}
+  .st p{margin:0;font-size:.92rem;color:var(--body)}
 
-  .close{text-align:center;padding:7.5rem 0}
-  .close h2{margin:0 auto 1rem;max-width:16ch}
-  .close .sub{margin:0 auto 2rem}
-  footer{border-top:1px solid var(--hair);padding:2rem 0 3.2rem;display:flex;flex-wrap:wrap;gap:.8rem;
-    justify-content:space-between;font-size:.84rem;color:var(--faint)}
+  .close{text-align:center;padding:8rem 0}
+  .close h2{margin:0 auto 1rem;max-width:16ch}.close .sub{margin:0 auto 2rem}
+  footer{border-top:1px solid var(--hair);padding:2rem 0 3rem;display:flex;flex-wrap:wrap;gap:.7rem;
+    justify-content:space-between;font-size:.82rem;color:var(--faint)}
 </style>
 </head>
 <body>
 <nav class="bar"><div class="wrap">
   <div class="mark">Ash<b>o</b>re</div>
-  <a class="btn" href="#start">Hand over a trip</a>
+  <a class="btn light" href="#start">Give us the trip</a>
 </div></nav>
 
-<div class="wrap">
-  <div class="hero">
-    <h1 class="rise">Your trip is planned.<br><em>Nobody has booked it.</em></h1>
-    <p class="lede rise">Ashore is the part that comes after. Watch it work.</p>
-    <div class="cta rise">
-      <a class="btn" href="#start">Hand over a trip</a>
-      <a class="btn soft" href="#honest">See what it refuses</a>
+<header class="hero">
+  <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=2000&q=72&auto=format&fit=crop" alt="The Seine at dusk, Paris" fetchpriority="high">
+  <div class="scrim"></div>
+  <div class="wrap">
+    <p class="kicker">Ashore</p>
+    <h1>Give us the trip. We handle the rest.</h1>
+    <p>You have already done the fun part. What is left is forty phone calls, six timezones, and a hotel that answers email on Tuesdays.</p>
+    <div class="hcta">
+      <a class="btn light" href="#start">Give us the trip</a>
+      <a class="btn ghost" href="#honest">See what it refuses</a>
     </div>
   </div>
+</header>
 
-  <!-- One booking, travelling the lanes until something catches it. -->
-  <div class="rig rise" id="rig">
-    <div class="rigbar">
-      <div class="job" data-job><i></i>Kaiseki Nakamura · table for 4 · Sat 19:30</div>
-      <em data-elapsed>00:00</em>
+<div class="wrap lead">
+  <p class="eyebrow rise">One real trip</p>
+  <h2 class="rise">Eight days in France. Here is what it actually did.</h2>
+  <p class="sub rise">Two adults, two teenagers, Paris then Provence. Everything below is the work between a finished plan and a family getting on a plane.</p>
+
+  <div class="trip rise" id="trip">
+    <div class="tripbar" data-bar>
+      <div class="t"><i></i>France · 1–8 September · 4 travellers</div>
+      <em data-clock>working</em>
     </div>
 
-    <div class="track">
-      <div class="rail"><div class="fill" data-fill></div></div>
-      <div class="stops">
-        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div><div class="nm">API</div><div class="vd" data-vd></div></div>
-        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div><div class="nm">Browser</div><div class="vd" data-vd></div></div>
-        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="nm">Email</div><div class="vd" data-vd></div></div>
-        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><div class="nm">Telephone</div><div class="vd" data-vd></div></div>
-        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></svg></div><div class="nm">Booked</div><div class="vd" data-vd></div></div>
-      </div>
+    <div class="row" data-row>
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M2 16h20M6 16l3-9h2l1 9M14 7h2l4 9"/></svg></div>
+      <div class="m"><strong>Air France 83 · San Francisco → Paris</strong><span>4 seats, business · <b>31 Aug, 15:05</b></span></div>
+      <div class="state" data-state>queued</div>
     </div>
 
-    <div class="call">
-      <div class="wave" data-wave><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="said" data-said>
-        <p><b>venue</b><span class="them">Good evening, Kaiseki Nakamura.</span></p>
-        <p><b>ashore</b><span class="us">Evening — do you have a table for four on Saturday, around half seven?</span></p>
-        <p><b>venue</b><span class="them">Seven thirty is gone. I could do quarter to nine.</span></p>
-        <p><b>ashore</b><span class="us">That's outside what the guest approved. Anything between half six and half eight?</span></p>
-        <p><b>venue</b><span class="them">Eight thirty, then. Under what name?</span></p>
-        <p><b>ashore</b><span class="us">Ada Traveller, four covers. Could you read that back to me?</span></p>
-      </div>
+    <div class="row" data-row>
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg></div>
+      <div class="m"><strong>Le Bristol Paris · 3 nights</strong><span>Two connecting deluxe rooms · <b>1–4 Sep</b></span></div>
+      <div class="state" data-state>queued</div>
     </div>
 
-    <div class="verdict" data-verdict>
-      <svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.4 3 3 6-6.4"/></svg>
-      <div><b>Booked · 20:30 · four covers</b> — read back from the venue before it counted.</div>
-      <span>NK-4482</span>
+    <div class="row" data-row>
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V6a2 2 0 0 1 2-2h12v16M8 8h6M8 12h6"/></svg></div>
+      <div class="m"><strong>Louvre · private family guide</strong><span>Timed entry coordinated · <b>2 Sep, 11:00</b></span></div>
+      <div class="state" data-state>queued</div>
+    </div>
+
+    <div class="row" data-row>
+      <div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M4 10h16M7 20l2-4M17 20l-2-4"/></svg></div>
+      <div class="m"><strong>TGV INOUI · Paris → Avignon</strong><span>First class, four seats together · <b>4 Sep, 13:07</b></span></div>
+      <div class="state" data-state>queued</div>
+    </div>
+
+    <div class="row" data-row>
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div>
+      <div class="m"><strong>Perruche · rooftop dinner</strong><span>No booking system — telephoned · <b>3 Sep, 19:30</b></span></div>
+      <div class="state" data-state>queued</div>
+    </div>
+
+    <div class="callstrip" data-call>
+      <div class="wv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p><b>venue</b><span class="them">Perruche, bonsoir.</span></p>
+      <p><b>ashore</b><span class="us">Good evening — a table for four on the third, around half seven, on the terrace if you have it.</span></p>
+      <p><b>venue</b><span class="them">Half seven is full. Quarter to nine?</span></p>
+      <p><b>ashore</b><span class="us">That is past what the family approved. Anything before half eight?</span></p>
+      <p><b>venue</b><span class="them">Eight o'clock, terrace. Name?</span></p>
+      <p><b>ashore</b><span class="us">Four covers. Could you read that back to me before we finish?</span></p>
+    </div>
+
+    <div class="row" data-row>
+      <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 10l7-7 7 7"/></svg></div>
+      <div class="m"><strong>Clover Gordes · dinner in Provence</strong><span>Deposit €180 — above the €150 you approved</span></div>
+      <div class="state" data-state>queued</div>
+    </div>
+
+    <div class="tripfoot">
+      <span><b data-n1>—</b> handled without you</span>
+      <span><b data-n2>—</b> came back for a decision</span>
+      <span><b data-n3>0</b> booked wrongly</span>
     </div>
   </div>
 </div>
 
+<section class="band">
+  <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=2000&q=70&auto=format&fit=crop" alt="A Paris street at golden hour">
+  <div class="wrap">
+    <p class="eyebrow rise" style="color:#4FD0B1">Why it takes a machine</p>
+    <h2 class="rise">Some places have an API. Most have a phone.</h2>
+    <p class="rise">A hotel group takes a structured request. A Michelin room takes a call at eleven in the morning. A ticket for a fresco you actually want to see goes on sale at nine on a Wednesday and is gone by five past.</p>
+    <p class="rise">Ashore holds accounts with the systems that take bookings, and picks up the phone for everything else. <strong>Same trip, whatever it takes.</strong></p>
+  </div>
+</section>
+
 <section>
   <div class="wrap center">
-    <p class="eyebrow rise">The mechanism</p>
-    <h2 class="rise">It tries every way in, and stops at the first that works.</h2>
-    <p class="sub rise">Some venues have an API. Some have a site that changes every quarter. Some have a person who answers a phone at eleven and nothing else. A system that knows one of those can book a fraction of your trip.</p>
+    <p class="eyebrow rise">What it takes on</p>
+    <h2 class="rise">The work between a plan and a holiday.</h2>
     <div class="cards three">
       <div class="c rise"><span class="tag">Air</span><h3>Bought, then read back</h3><p>Fares held, ticketed, then fetched again from the airline before anyone is told it is done.</p></div>
       <div class="c rise"><span class="tag">Rooms</span><h3>Refundable by default</h3><p>It hunts for a rate you can walk away from, and asks before committing to one you cannot.</p></div>
@@ -260,139 +289,146 @@
 
 <section id="honest">
   <div class="wrap">
-    <div class="refuse rise">
-      <div class="say">
-        <p class="eyebrow" style="color:#4FD0B1">The part nobody advertises</p>
-        <h2>It would rather hand your trip back than lie about it.</h2>
-        <p>An autonomous agent that is wrong five percent of the time is not ninety-five percent useful. It is unusable — because now you have to check all of it, and checking was the work you were trying to avoid.</p>
-        <p>So everything rests on one rule: <strong>an attempt is never a booking.</strong> Nothing is confirmed until it has been read back from the supplier. If money moves and the confirmation does not arrive, it stops and asks a human rather than risk buying twice.</p>
-        <p>A lane that is not connected declines. It does not improvise.</p>
-      </div>
-      <div class="ledger">
-        <div><span class="k">Le Bristol · 3 nights</span><span class="ok">read back</span></div>
-        <div><span class="k">AF83 · SFO→CDG</span><span class="ok">QFVGMN</span></div>
-        <div><span class="k">Louvre · guide</span><span class="ok">held</span></div>
-        <hr>
-        <div><span class="k">Clover Gordes</span><span class="no">handed back</span></div>
-        <div><span class="k">— why</span><span>deposit €180 &gt; €150</span></div>
-        <hr>
-        <div><span class="k">false confirmations</span><span class="ok">0</span></div>
-        <div><span class="k">double bookings</span><span class="ok">0</span></div>
-      </div>
+    <p class="eyebrow rise">The part nobody advertises</p>
+    <h2 class="rise">It would rather hand your trip back than lie about it.</h2>
+    <p class="sub rise">An autonomous agent that is wrong five percent of the time is not ninety-five percent useful. It is unusable — because now you have to check all of it, and checking was the work you were trying to avoid.</p>
+    <div class="steps">
+      <div class="st rise"><div class="num">01</div><div><h3>An attempt is never a booking</h3><p>Nothing is marked confirmed until it has been read back from the supplier and matched against what you asked for.</p></div></div>
+      <div class="st rise"><div class="num">02</div><div><h3>The policy decides, not the model</h3><p>Times, deposits, cancellation terms and party size are checked in code. The agent reports what it was offered; it does not get a vote.</p></div></div>
+      <div class="st rise"><div class="num">03</div><div><h3>Money moves once, or not at all</h3><p>Funds are authorised, then the supplier is asked to commit with an idempotency key, so a retry cannot buy a second one.</p></div></div>
+      <div class="st rise"><div class="num">04</div><div><h3>If it cannot tell, it stops</h3><p>When a payment goes through and the confirmation does not, it asks a human rather than risk booking twice.</p></div></div>
+      <div class="st rise"><div class="num">05</div><div><h3>What it cannot do, it says</h3><p>A channel that is not connected declines and hands the task back with everything it learned. It does not improvise.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <p class="eyebrow rise">Wired in</p>
+    <h2 class="rise">Real accounts with real systems.</h2>
+    <p class="sub rise">Not a wrapper around a search box. Ashore speaks each provider's protocol properly — signed requests, idempotency keys, two-phase commits.</p>
+    <div class="cards three">
+      <div class="c rise"><span class="tag">Flights</span><h3>Duffel</h3><p>Offer requests, orders, and order retrieval for the read-back.</p></div>
+      <div class="c rise"><span class="tag">Hotels</span><h3>Nuitée · LiteAPI</h3><p>Rates, prebook, book — walking past rates the supplier will not honour.</p></div>
+      <div class="c rise"><span class="tag">Experiences</span><h3>TourCMS</h3><p>Signed requests against live operator inventory and real cancellation policy.</p></div>
+      <div class="c rise"><span class="tag">Payments</span><h3>Stripe</h3><p>Manual capture, 3-D Secure, and a ledger no model can reach.</p></div>
+      <div class="c rise"><span class="tag">Mail</span><h3>Resend</h3><p>Outbound mail and signed inbound webhooks, threaded to the task that sent them.</p></div>
+      <div class="c rise"><span class="tag">Voice</span><h3>Live telephony</h3><p>Real-time speech both ways, with the reservation policy held outside the voice.</p></div>
     </div>
   </div>
 </section>
 
 <div class="wrap">
   <div class="close" id="start">
-    <h2 class="rise">Bring a plan. Any plan.</h2>
+    <h2 class="rise">Give us the trip.</h2>
     <p class="sub rise">A document from your travel agent, a spreadsheet you have added to for months, something a chatbot wrote, or a pile of forwarded confirmations. Ashore reads it, works out what has to happen, and starts.</p>
-    <div class="cta rise"><a class="btn" href="#rig">Watch it work</a></div>
+    <div class="hcta rise" style="justify-content:center"><a class="btn" href="#trip">See it work</a></div>
   </div>
-  <footer><span>Ashore — the part after the plan.</span><span>An attempt is never a booking.</span></footer>
+  <footer>
+    <span>Ashore — give us the trip, we handle the rest.</span>
+    <span>ashore.travel · photographs via Unsplash</span>
+  </footer>
 </div>
 
 <script>
-(function () {
-  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+(function(){
+  var still=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var peers = [].slice.call(e.target.parentNode.querySelectorAll(".rise"));
-        var i = Math.max(0, peers.indexOf(e.target));
-        setTimeout(function () { e.target.classList.add("in"); }, still ? 0 : Math.min(i, 6) * 70);
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        var peers=[].slice.call(e.target.parentNode.querySelectorAll(".rise"));
+        var i=Math.max(0,peers.indexOf(e.target));
+        setTimeout(function(){e.target.classList.add("in")},still?0:Math.min(i,6)*70);
         io.unobserve(e.target);
       });
-    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".rise").forEach(function (n) { io.observe(n); });
-  } else { document.querySelectorAll(".rise").forEach(function (n) { n.classList.add("in"); }); }
+    },{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+    document.querySelectorAll(".rise").forEach(function(n){io.observe(n)});
+  } else document.querySelectorAll(".rise").forEach(function(n){n.classList.add("in")});
 
-  var stops = [].slice.call(document.querySelectorAll("[data-stop]"));
-  var vds   = [].slice.call(document.querySelectorAll("[data-vd]"));
-  var lines = [].slice.call(document.querySelectorAll("[data-said] p"));
-  var wave  = document.querySelector("[data-wave]");
-  var fill  = document.querySelector("[data-fill]");
-  var job   = document.querySelector("[data-job]");
-  var elapsed = document.querySelector("[data-elapsed]");
-  var verdict = document.querySelector("[data-verdict]");
+  var rows=[].slice.call(document.querySelectorAll("[data-row]"));
+  var states=[].slice.call(document.querySelectorAll("[data-state]"));
+  var call=document.querySelector("[data-call]");
+  var said=call?[].slice.call(call.querySelectorAll("p")):[];
+  var bar=document.querySelector("[data-bar]"), clock=document.querySelector("[data-clock]");
+  var n1=document.querySelector("[data-n1]"),n2=document.querySelector("[data-n2]"),n3=document.querySelector("[data-n3]");
 
-  wave.querySelectorAll("i").forEach(function (b, i) { b.style.animationDelay = (i * 60) + "ms"; });
+  /* Real outcomes from the trip above. Five done, one handed back. */
+  var FINAL=[["ticketed","g"],["booked","g"],["held","g"],["booked","g"],["confirmed","g"],["handed back","b"]];
+  var T=[];
+  function at(ms,fn){T.push(setTimeout(fn,ms))}
 
-  var MISS = ["no api", "no slot", "no reply", "", ""];
-  var T = [], t0 = 0, tick = null;
-
-  function reset() {
-    T.forEach(clearTimeout); T = []; clearInterval(tick);
-    stops.forEach(function (s) { s.className = "stop"; });
-    vds.forEach(function (v) { v.textContent = ""; });
-    lines.forEach(function (l) { l.classList.remove("in"); });
-    wave.classList.remove("on");
-    verdict.classList.remove("on");
-    job.classList.remove("done");
-    fill.style.width = "0%";
-    elapsed.textContent = "00:00";
+  function reset(){
+    T.forEach(clearTimeout);T=[];
+    rows.forEach(function(r){r.className="row"});
+    states.forEach(function(s){s.className="state";s.textContent="queued"});
+    said.forEach(function(p){p.classList.remove("in")});
+    if(call)call.classList.remove("open");
+    if(bar)bar.classList.remove("done");
+    if(clock)clock.textContent="working";
+    n1.textContent="—";n2.textContent="—";
   }
 
-  function at(ms, fn) { T.push(setTimeout(fn, ms)); }
-
-  function play() {
+  function settle(){
     reset();
-    if (still) {
-      stops.forEach(function (s, i) { s.className = "stop " + (i < 3 ? "miss" : "win"); });
-      vds.forEach(function (v, i) { v.textContent = i < 3 ? MISS[i] : (i === 3 ? "booked" : "confirmed"); });
-      lines.forEach(function (l) { l.classList.add("in"); });
-      fill.style.width = "100%"; job.classList.add("done");
-      verdict.classList.add("on"); elapsed.textContent = "00:41";
+    if(still){
+      rows.forEach(function(r,i){r.className="row in"+(i===5?" flag":"")});
+      states.forEach(function(s,i){s.className="state "+FINAL[i][1];s.textContent=FINAL[i][0]});
+      said.forEach(function(p){p.classList.add("in")});
+      if(call)call.classList.add("open");
+      if(bar)bar.classList.add("done");
+      clock.textContent="settled";n1.textContent="5";n2.textContent="1";
       return;
     }
+    rows.forEach(function(r,i){at(200+i*140,function(){r.classList.add("in")})});
 
-    t0 = Date.now();
-    tick = setInterval(function () {
-      var s = Math.floor((Date.now() - t0) / 250);
-      elapsed.textContent = "00:" + String(Math.min(s, 41)).padStart(2, "0");
-    }, 250);
-
-    /* Three lanes decline in turn. */
-    [0, 1, 2].forEach(function (i) {
-      at(400 + i * 1000, function () {
-        stops[i].className = "stop act";
-        fill.style.width = (i * 25 + 12) + "%";
+    /* Four run straight through. */
+    [0,1,2,3].forEach(function(i){
+      at(1100+i*760,function(){
+        rows[i].classList.add("hot");
+        states[i].className="state w";states[i].innerHTML='<i class="dotp"></i>working';
       });
-      at(1050 + i * 1000, function () {
-        stops[i].className = "stop miss";
-        vds[i].textContent = MISS[i];
+      at(1900+i*760,function(){
+        rows[i].classList.remove("hot");
+        states[i].className="state "+FINAL[i][1];states[i].textContent=FINAL[i][0];
       });
     });
 
-    /* The telephone picks it up. */
-    at(3400, function () { stops[3].className = "stop act"; fill.style.width = "76%"; wave.classList.add("on"); });
-    lines.forEach(function (l, i) { at(3800 + i * 1150, function () { l.classList.add("in"); }); });
-
-    at(10800, function () {
-      wave.classList.remove("on");
-      stops[3].className = "stop win"; vds[3].textContent = "booked";
-      fill.style.width = "100%";
+    /* The fifth needs a phone call, so you watch it happen. */
+    at(4300,function(){
+      rows[4].classList.add("hot");
+      states[4].className="state w";states[4].innerHTML='<i class="dotp"></i>calling';
+      if(call)call.classList.add("open");
     });
-    at(11300, function () {
-      stops[4].className = "stop win"; vds[4].textContent = "confirmed";
-      job.classList.add("done");
-      verdict.classList.add("on");
-      clearInterval(tick); elapsed.textContent = "00:41";
+    said.forEach(function(p,i){at(4700+i*1000,function(){p.classList.add("in")})});
+    at(11000,function(){
+      rows[4].classList.remove("hot");
+      states[4].className="state g";states[4].textContent="confirmed";
+      if(call)call.classList.remove("open");
     });
 
-    /* Breathe, then run it again. */
-    at(17500, play);
+    /* And the sixth is handed back. That is the point. */
+    at(11900,function(){
+      states[5].className="state w";states[5].innerHTML='<i class="dotp"></i>checking';
+    });
+    at(13000,function(){
+      rows[5].classList.add("flag");
+      states[5].className="state b";states[5].textContent="handed back";
+      if(bar)bar.classList.add("done");
+      clock.textContent="settled";n1.textContent="5";n2.textContent="1";
+    });
+
+    at(19500,settle);
   }
 
-  var rig = document.getElementById("rig");
-  if (rig && "IntersectionObserver" in window) {
-    var ro = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { play(); } else { T.forEach(clearTimeout); clearInterval(tick); } });
-    }, { threshold: .25 });
-    ro.observe(rig);
-  } else { play(); }
+  var trip=document.getElementById("trip");
+  if(trip&&"IntersectionObserver" in window){
+    var ro=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){settle()} else {T.forEach(clearTimeout)} });
+    },{threshold:.2});
+    ro.observe(trip);
+  } else settle();
 })();
 </script>
 </body>
