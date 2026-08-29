@@ -4,343 +4,270 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ashore</title>
-<meta name="description" content="Ashore is the part after the plan. It makes the calls, sends the emails, holds the rooms and pays the deposits — and when it can't, it says so.">
-<meta name="color-scheme" content="light dark">
+<meta name="description" content="Your trip is planned. Nobody has booked it. Ashore is the machine that calls, writes, holds and pays — and stops the moment it is unsure.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07090D">
 <link rel="canonical" href="https://ashore.travel/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127903;</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%2307090D%22/><circle cx=%2250%22 cy=%2250%22 r=%2218%22 fill=%22%2335E0C0%22/></svg>">
 <meta property="og:title" content="Ashore">
-<meta property="og:description" content="Your trip is planned. Nobody has booked it. Ashore is the part after the plan.">
+<meta property="og:description" content="Your trip is planned. Nobody has booked it.">
 <meta property="og:url" content="https://ashore.travel/">
 <meta property="og:type" content="website">
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; }
+  html { -webkit-text-size-adjust: 100%; background: #07090D; }
   img, svg { max-width: 100%; }
   button { font: inherit; }
 </style>
 <style>
   /* ============================================================
-     Palette: ticket stock and signal colours.
-     The three accents are not decoration — they are the product's
-     own three states, so the page is coloured by what it means.
+     A committed single-world design: the product's own console.
+     Every colour is painted explicitly so the page holds on any
+     host ground. The three signals are the system's real states.
      ============================================================ */
   :root {
-    --paper:      #F3F3F1;
-    --card:       #FFFFFF;
-    --sunk:       #ECECE9;
-    --ink:        #14171A;
-    --soft:       #545C63;
-    --faint:      #868E96;
-    --rule:       #DEDEDA;
-    --hair:       #E9E9E6;
+    --void:    #07090D;
+    --deep:    #0B0F16;
+    --panel:   #10151F;
+    --raised:  #151B27;
+    --line:    #1D2534;
+    --hair:    #161D29;
 
-    --go:         #0E6152;   /* done, and verified */
-    --go-bg:      #E1EDE9;
-    --wait:       #8A6209;   /* working on it */
-    --wait-bg:    #F3EBD9;
-    --hand:       #9C3A2A;   /* handed back to you */
-    --hand-bg:    #F5E3DF;
+    --text:    #E6EDF7;
+    --dim:     #8A97AC;
+    --faint:   #5A6679;
 
-    --display: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-    --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    --live:    #35E0C0;   /* working, connected, confirmed */
+    --live-dk: #0E3A34;
+    --wait:    #F0B849;   /* in flight */
+    --wait-dk: #3A2E12;
+    --back:    #FF7A6B;   /* handed back */
+    --back-dk: #3B1D1B;
+    --beam:    #4DA8FF;   /* the accent, used sparingly */
 
-    --measure: 34rem;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper:  #101315;
-      --card:   #171B1E;
-      --sunk:   #1C2124;
-      --ink:    #E8EAEB;
-      --soft:   #9AA3A9;
-      --faint:  #737C82;
-      --rule:   #272D31;
-      --hair:   #202528;
-
-      --go:      #4FBBA1;
-      --go-bg:   #123029;
-      --wait:    #D2A544;
-      --wait-bg: #32280F;
-      --hand:    #E28470;
-      --hand-bg: #37201B;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper:  #101315;
-    --card:   #171B1E;
-    --sunk:   #1C2124;
-    --ink:    #E8EAEB;
-    --soft:   #9AA3A9;
-    --faint:  #737C82;
-    --rule:   #272D31;
-    --hair:   #202528;
-
-    --go:      #4FBBA1;
-    --go-bg:   #123029;
-    --wait:    #D2A544;
-    --wait-bg: #32280F;
-    --hand:    #E28470;
-    --hand-bg: #37201B;
+    --sans: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Roboto Mono", monospace;
   }
 
   * { box-sizing: border-box; }
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 17px;
+    margin: 0;
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    /* A faint field, so the ground reads as depth rather than flat black. */
+    background-image:
+      radial-gradient(900px 500px at 12% -8%, rgba(77,168,255,0.09), transparent 60%),
+      radial-gradient(700px 460px at 92% 4%, rgba(53,224,192,0.06), transparent 62%);
+    background-repeat: no-repeat;
   }
-  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+  .wrap { max-width: 74rem; margin: 0 auto; padding: 0 1.5rem; }
+  ::selection { background: rgba(77,168,255,0.28); }
 
-  /* ---------- masthead ---------- */
+  /* ---------- chrome ---------- */
   header.top {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 1rem; padding: 1.75rem 0 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 0; gap: 1rem;
+    border-bottom: 1px solid var(--hair);
   }
   .mark {
-    font-family: var(--display);
-    font-size: 1.35rem; font-weight: 600; letter-spacing: -0.012em;
+    font-family: var(--mono); font-size: 0.94rem; letter-spacing: 0.24em;
+    text-transform: uppercase; font-weight: 600; color: var(--text);
   }
-  .mark span { color: var(--go); }
-  .top nav { display: flex; gap: 1.5rem; font-size: 0.9rem; }
-  .top nav a { color: var(--soft); text-decoration: none; }
-  .top nav a:hover { color: var(--ink); }
+  .mark i { font-style: normal; color: var(--live); }
+  .status {
+    display: flex; align-items: center; gap: 0.55rem;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--faint);
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--live);
+    box-shadow: 0 0 0 3px rgba(53,224,192,0.14);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .dot { animation: pulse 2.6s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.35 } }
+  }
 
   /* ---------- hero ---------- */
-  .hero { padding: 5.5rem 0 3rem; display: grid; grid-template-columns: 1fr; gap: 3rem; }
-  @media (min-width: 62rem) { .hero { grid-template-columns: 1.05fr 0.95fr; align-items: start; gap: 4rem; } }
+  .hero { padding: 5rem 0 4rem; display: grid; gap: 3rem; }
+  @media (min-width: 68rem) { .hero { grid-template-columns: 0.92fr 1.08fr; gap: 4rem; align-items: center; } }
 
   h1 {
-    font-family: var(--display);
-    font-size: clamp(2.9rem, 7vw, 4.3rem);
-    line-height: 1.02;
-    letter-spacing: -0.022em;
-    font-weight: 600;
-    margin: 0 0 1.5rem;
-    text-wrap: balance;
+    font-size: clamp(2.6rem, 5.6vw, 4rem);
+    line-height: 1.02; letter-spacing: -0.03em; font-weight: 700;
+    margin: 0 0 1.4rem; text-wrap: balance;
   }
-  h1 em { font-style: normal; color: var(--go); }
-  .lede { font-size: 1.2rem; line-height: 1.55; color: var(--soft); max-width: var(--measure); margin: 0; }
-  .lede + .lede { margin-top: 1rem; }
+  h1 span {
+    background: linear-gradient(96deg, var(--live), var(--beam));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede { font-size: 1.14rem; color: var(--dim); margin: 0 0 1rem; max-width: 46ch; }
 
-  .cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; align-items: center; }
-  .button {
-    display: inline-block; background: var(--ink); color: var(--paper);
-    padding: 0.8rem 1.4rem; border-radius: 2px; text-decoration: none;
-    font-size: 0.95rem; font-weight: 550; letter-spacing: 0.01em;
-    transition: transform 120ms ease;
+  .cta { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+  .btn {
+    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.85rem 1.3rem; border-radius: 4px; text-decoration: none; font-weight: 600;
+    background: var(--live); color: #05231E; border: 1px solid var(--live);
+    transition: transform 140ms ease, box-shadow 140ms ease;
   }
-  .button:hover { transform: translateY(-1px); }
-  .button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--go); outline-offset: 3px; }
-
-  /* ---------- the ladder: the product's actual mechanism ---------- */
-  .ladder {
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .ladder-head {
-    padding: 0.85rem 1.15rem;
-    border-bottom: 1px solid var(--rule);
-    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
-    background: var(--sunk);
-  }
-  .ladder-head b { font-size: 0.93rem; font-weight: 600; }
-  .ladder-head span { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--faint); }
-
-  .rung {
-    display: grid; grid-template-columns: 1.6rem 1fr auto;
-    gap: 0.85rem; align-items: baseline;
-    padding: 0.72rem 1.15rem;
-    border-bottom: 1px solid var(--hair);
-    font-size: 0.93rem;
-    opacity: 0.32;
-  }
-  .rung:last-child { border-bottom: none; }
-  .rung .n { font-family: var(--mono); font-size: 0.72rem; color: var(--faint); font-variant-numeric: tabular-nums; }
-  .rung .what { color: var(--soft); }
-  .rung .what b { color: var(--ink); font-weight: 600; display: block; font-size: 0.95rem; }
-  .rung .verdict { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; }
-
-  .rung.lit { opacity: 1; }
-  .rung.lit .verdict { color: var(--faint); }
-  .rung.caught { opacity: 1; background: var(--go-bg); }
-  .rung.caught .verdict { color: var(--go); font-weight: 700; }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .rung { transition: opacity 260ms ease, background-color 260ms ease; }
-  }
-
-  .ladder-foot {
-    padding: 0.9rem 1.15rem; border-top: 1px solid var(--rule);
-    font-size: 0.85rem; color: var(--soft); background: var(--sunk);
-    display: flex; justify-content: space-between; gap: 1rem; align-items: center;
-  }
-  .replay {
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
-    background: none; border: 1px solid var(--rule); color: var(--soft);
-    padding: 0.3rem 0.6rem; border-radius: 2px; cursor: pointer;
-  }
-  .replay:hover { color: var(--ink); border-color: var(--faint); }
-
-  /* ---------- sections ---------- */
-  section { padding: 4.5rem 0; border-top: 1px solid var(--rule); }
-  .eyebrow {
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--faint); margin: 0 0 0.9rem;
-  }
-  h2 {
-    font-family: var(--display); font-size: clamp(1.9rem, 4vw, 2.6rem);
-    line-height: 1.14; letter-spacing: -0.015em; font-weight: 600;
-    margin: 0 0 1.1rem; text-wrap: balance; max-width: 22ch;
-  }
-  section > .wrap > p { max-width: var(--measure); color: var(--soft); margin: 0 0 1rem; }
-  section > .wrap > p strong { color: var(--ink); font-weight: 600; }
-
-  /* ---------- the refusal: the centrepiece ---------- */
-  .refusal {
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 3px;
-    padding: clamp(2.25rem, 5vw, 3.75rem);
-    display: grid; gap: 2rem;
-  }
-  @media (min-width: 56rem) { .refusal { grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; } }
-  .refusal h2 { color: var(--paper); margin: 0 0 1rem; max-width: 18ch; }
-  .refusal p { color: color-mix(in srgb, var(--paper) 72%, transparent); margin: 0 0 0.9rem; max-width: 40ch; }
-  .refusal p:last-child { margin-bottom: 0; }
-  .receipt {
-    background: color-mix(in srgb, var(--paper) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--paper) 16%, transparent);
-    border-radius: 2px; padding: 1.4rem;
-    font-family: var(--mono); font-size: 0.82rem; line-height: 1.85;
-  }
-  .receipt div { display: flex; justify-content: space-between; gap: 1.5rem; }
-  .receipt .k { color: color-mix(in srgb, var(--paper) 55%, transparent); }
-  .receipt .v { text-align: right; }
-  .receipt .ok { color: #6FD3B8; }
-  .receipt .no { color: #F0A08D; }
-  .receipt hr { border: none; border-top: 1px dashed color-mix(in srgb, var(--paper) 22%, transparent); margin: 0.8rem 0; }
-
-  /* ---------- grids ---------- */
-  .grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; margin-top: 2.25rem; }
-  @media (min-width: 44rem) { .grid.two { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 60rem) { .grid.three { grid-template-columns: repeat(3, 1fr); } }
-  .cell { background: var(--card); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; }
-  .cell h3 { margin: 0; font-size: 1.02rem; font-weight: 620; letter-spacing: -0.005em; }
-  .cell p { margin: 0; font-size: 0.93rem; color: var(--soft); }
-  .cell .tag {
-    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.09em; text-transform: uppercase;
-    color: var(--faint);
-  }
-
-  /* ---------- steps ---------- */
-  .steps { display: grid; gap: 0; margin-top: 2.25rem; counter-reset: step; }
-  .step {
-    display: grid; grid-template-columns: 2.6rem 1fr; gap: 1.25rem;
-    padding: 1.5rem 0; border-top: 1px solid var(--hair);
-  }
-  .step:first-child { border-top: none; }
-  .step::before {
-    counter-increment: step; content: counter(step, decimal-leading-zero);
-    font-family: var(--mono); font-size: 0.78rem; color: var(--go);
-    font-variant-numeric: tabular-nums; padding-top: 0.22rem;
-  }
-  .step h3 { margin: 0 0 0.35rem; font-size: 1.05rem; font-weight: 620; }
-  .step p { margin: 0; color: var(--soft); font-size: 0.95rem; max-width: 46ch; }
-
-  /* ---------- close ---------- */
-  .close { text-align: center; padding: 6rem 0; border-top: 1px solid var(--rule); }
-  .close h2 { margin: 0 auto 1.1rem; max-width: 16ch; }
-  .close p { margin: 0 auto; max-width: 34rem; color: var(--soft); }
-  .close .cta { justify-content: center; }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(53,224,192,0.22); }
+  .btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--faint); box-shadow: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--beam); outline-offset: 3px; }
 
   .origin {
-    margin: 2.25rem 0 0;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--rule);
-    font-size: 0.92rem;
-    line-height: 1.6;
-    color: var(--faint);
-    max-width: 42ch;
+    margin-top: 2.4rem; padding-top: 1.2rem; border-top: 1px solid var(--hair);
+    font-size: 0.88rem; color: var(--faint); max-width: 44ch;
   }
-  .origin b { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); }
-  .origin i { font-style: italic; color: var(--soft); }
+  .origin b { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+
+  /* ---------- the console: the product, running ---------- */
+  .console {
+    background: linear-gradient(180deg, var(--panel), var(--deep));
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    box-shadow: 0 28px 70px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .console-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 0.75rem 1.05rem; border-bottom: 1px solid var(--line); background: var(--raised);
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .console-bar b { color: var(--text); font-weight: 600; letter-spacing: 0.06em; text-transform: none; font-size: 0.84rem; }
+  .console-bar span { color: var(--faint); }
+
+  .lanes { padding: 0.35rem 0; }
+  .lane {
+    display: grid; grid-template-columns: 4.4rem 1fr auto; gap: 0.9rem; align-items: center;
+    padding: 0.7rem 1.05rem; font-size: 0.9rem;
+    border-left: 2px solid transparent;
+    opacity: 0.25;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lane { transition: opacity 300ms ease, background-color 300ms ease, border-color 300ms ease; }
+  }
+  .lane .idx { font-family: var(--mono); font-size: 0.68rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .lane .nm { color: var(--text); font-weight: 550; }
+  .lane .nm em { display: block; font-style: normal; font-size: 0.8rem; color: var(--faint); font-weight: 400; margin-top: 0.1rem; }
+  .lane .vd {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--faint); white-space: nowrap;
+  }
+  .lane.on  { opacity: 1; border-left-color: var(--line); }
+  .lane.on .vd { color: var(--back); }
+  .lane.hit { opacity: 1; background: linear-gradient(90deg, var(--live-dk), transparent 70%); border-left-color: var(--live); }
+  .lane.hit .vd { color: var(--live); font-weight: 700; }
+
+  .console-foot {
+    border-top: 1px solid var(--line); background: var(--raised);
+    padding: 0.8rem 1.05rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    font-family: var(--mono); font-size: 0.7rem; color: var(--faint);
+  }
+  .replay {
+    font: inherit; background: transparent; border: 1px solid var(--line); color: var(--dim);
+    padding: 0.3rem 0.65rem; border-radius: 3px; cursor: pointer; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .replay:hover { color: var(--text); border-color: var(--faint); }
+
+  /* ---------- sections ---------- */
+  section { padding: 5rem 0; border-top: 1px solid var(--hair); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--beam); margin: 0 0 1rem;
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1.12; letter-spacing: -0.02em;
+    font-weight: 700; margin: 0 0 1rem; max-width: 20ch; text-wrap: balance;
+  }
+  section > .wrap > p { color: var(--dim); max-width: 58ch; margin: 0 0 0.9rem; }
+  section > .wrap > p strong { color: var(--text); font-weight: 600; }
+
+  .grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin-top: 2.5rem; }
+  @media (min-width: 46rem) { .grid.two { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 64rem) { .grid.three { grid-template-columns: repeat(3,1fr); } }
+  .cell { background: var(--deep); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .cell .tag { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--beam); }
+  .cell h3 { margin: 0; font-size: 1rem; font-weight: 650; }
+  .cell p { margin: 0; font-size: 0.9rem; color: var(--dim); }
+
+  /* ---------- the refusal ---------- */
+  .refusal {
+    margin-top: 2.5rem; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    display: grid; background: var(--deep);
+  }
+  @media (min-width: 60rem) { .refusal { grid-template-columns: 1fr 1fr; } }
+  .refusal .say { padding: clamp(1.8rem, 3.6vw, 2.8rem); }
+  .refusal .say p { color: var(--dim); margin: 0 0 0.9rem; max-width: 42ch; }
+  .refusal .say p:last-child { margin: 0; }
+  .receipt {
+    background: var(--void); border-left: 1px solid var(--line);
+    padding: clamp(1.6rem, 3vw, 2.2rem); font-family: var(--mono); font-size: 0.8rem; line-height: 1.95;
+  }
+  .receipt div { display: flex; justify-content: space-between; gap: 1.2rem; }
+  .receipt .k { color: var(--faint); }
+  .receipt .ok { color: var(--live); }
+  .receipt .no { color: var(--back); }
+  .receipt hr { border: 0; border-top: 1px dashed var(--line); margin: 0.9rem 0; }
+
+  /* ---------- sequence ---------- */
+  .steps { margin-top: 2.5rem; counter-reset: s; }
+  .step { display: grid; grid-template-columns: 3rem 1fr; gap: 1.2rem; padding: 1.4rem 0; border-top: 1px solid var(--hair); }
+  .step:first-child { border-top: 0; }
+  .step::before {
+    counter-increment: s; content: counter(s, decimal-leading-zero);
+    font-family: var(--mono); font-size: 0.8rem; color: var(--beam); font-variant-numeric: tabular-nums; padding-top: 0.2rem;
+  }
+  .step h3 { margin: 0 0 0.3rem; font-size: 1rem; font-weight: 650; }
+  .step p { margin: 0; font-size: 0.92rem; color: var(--dim); max-width: 52ch; }
+
+  .close { text-align: center; padding: 6rem 0; border-top: 1px solid var(--hair); }
+  .close h2 { margin: 0 auto 1rem; max-width: 18ch; }
+  .close p { color: var(--dim); max-width: 40rem; margin: 0 auto; }
+  .close .cta { justify-content: center; }
 
   footer {
-    border-top: 1px solid var(--rule); padding: 2rem 0 3rem;
-    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
-    font-size: 0.85rem; color: var(--faint);
+    border-top: 1px solid var(--hair); padding: 2rem 0 3rem;
+    display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: space-between;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--faint); letter-spacing: 0.04em;
   }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="mark">A<span>shore</span></div>
-    <nav>
-      <a href="#ladder">How it works</a>
-      <a href="#honest">Honesty</a>
-      <a href="#connected">Connected</a>
-    </nav>
+    <div class="mark">ASH<i>O</i>RE</div>
+    <div class="status"><span class="dot"></span> executing</div>
   </header>
 
   <div class="hero">
     <div>
-      <h1>Your trip is planned. <em>Nobody has booked it.</em></h1>
-      <p class="lede">Every travel tool ends at a beautiful itinerary. Then someone — you — spends a fortnight on hold, refreshing release pages, and emailing a hotel in another timezone about connecting rooms.</p>
-      <p class="lede">Ashore is the part after the plan. It makes the calls, sends the emails, holds the rooms, and pays the deposits. And when it can't, it says so.</p>
+      <h1>Your trip is planned.<br><span>Nobody has booked it.</span></h1>
+      <p class="lede">Every tool ends at a beautiful itinerary. Then a human spends two weeks on hold, refreshing release pages, and emailing a hotel six timezones away about connecting rooms.</p>
+      <p class="lede">Ashore is the machine that does that part. It calls, writes, holds, and pays — and the moment it is unsure, it stops and tells you.</p>
       <div class="cta">
-        <a class="button" href="#connected">See what it books</a>
-        <a class="button ghost" href="#honest">Read the honest part</a>
+        <a class="btn" href="#connected">What it books</a>
+        <a class="btn ghost" href="#honest">What it refuses</a>
       </div>
-      <p class="origin"><b>ashore</b> · the word for arriving. Not the crossing, not the plan — the moment the journey is behind you and you are simply <i>there</i>.</p>
+      <p class="origin"><b>ashore</b> — the word for arriving. Not the crossing, not the plan. The moment the journey is behind you and you are simply there.</p>
     </div>
 
-    <div class="ladder" id="ladder">
-      <div class="ladder-head">
-        <b>Dinner for four · Saturday, 19:30</b>
-        <span>live</span>
+    <div class="console" id="ladder">
+      <div class="console-bar">
+        <b>Dinner · 4 covers · Sat 19:30</b>
+        <span data-clock>—</span>
       </div>
-      <div class="rung" data-rung>
-        <span class="n">01</span>
-        <span class="what"><b>Supplier API</b>Direct booking, if one exists</span>
-        <span class="verdict" data-verdict>no api</span>
+      <div class="lanes">
+        <div class="lane" data-lane><span class="idx">01</span><span class="nm">Supplier API<em>Direct booking, where one exists</em></span><span class="vd">no api</span></div>
+        <div class="lane" data-lane><span class="idx">02</span><span class="nm">Known flow<em>A form it has completed before</em></span><span class="vd">not seen</span></div>
+        <div class="lane" data-lane><span class="idx">03</span><span class="nm">Browser agent<em>Works the site out live</em></span><span class="vd">no slot</span></div>
+        <div class="lane" data-lane><span class="idx">04</span><span class="nm">Email<em>Writes, waits, reads the reply</em></span><span class="vd">no answer</span></div>
+        <div class="lane" data-lane><span class="idx">05</span><span class="nm">Telephone<em>Speaks to whoever picks up</em></span><span class="vd">booked</span></div>
+        <div class="lane" data-lane><span class="idx">06</span><span class="nm">Handed to you<em>With everything it learned</em></span><span class="vd">not needed</span></div>
       </div>
-      <div class="rung" data-rung>
-        <span class="n">02</span>
-        <span class="what"><b>Known flow</b>A form it has filled before</span>
-        <span class="verdict" data-verdict>not seen</span>
-      </div>
-      <div class="rung" data-rung>
-        <span class="n">03</span>
-        <span class="what"><b>Browser agent</b>Works the site out live</span>
-        <span class="verdict" data-verdict>no slot</span>
-      </div>
-      <div class="rung" data-rung>
-        <span class="n">04</span>
-        <span class="what"><b>Email</b>Writes, waits, reads the reply</span>
-        <span class="verdict" data-verdict>no answer</span>
-      </div>
-      <div class="rung" data-rung>
-        <span class="n">05</span>
-        <span class="what"><b>Telephone</b>Speaks to whoever picks up</span>
-        <span class="verdict" data-verdict>booked</span>
-      </div>
-      <div class="rung" data-rung>
-        <span class="n">06</span>
-        <span class="what"><b>Handed to you</b>With everything it learned</span>
-        <span class="verdict" data-verdict>not needed</span>
-      </div>
-      <div class="ladder-foot">
-        <span>It stops at the first rung that works.</span>
+      <div class="console-foot">
+        <span>Stops at the first lane that works.</span>
         <button class="replay" type="button" data-replay>Replay</button>
       </div>
     </div>
@@ -349,44 +276,45 @@
 
 <section>
   <div class="wrap">
-    <p class="eyebrow">The idea</p>
+    <p class="eyebrow">The mechanism</p>
     <h2>Booking is not one problem. It is seven.</h2>
-    <p>Some things have an API. Some have a website that changes every quarter. Some have a person who answers a phone at eleven in the morning and nothing else. A tool that only knows one of those can only book a slice of your trip.</p>
-    <p>Ashore tries each in turn and stops at the first that works. A task that reaches the last rung has been genuinely attempted six ways, and arrives with everything the earlier attempts learned attached to it — <strong>not as a failure, as a shortlist.</strong></p>
+    <p>Some venues have an API. Some have a site that changes every quarter. Some have a person who answers a phone at eleven in the morning and nothing else. A system that knows one of those can book a fraction of your trip.</p>
+    <p>Ashore attempts each in order and stops at the first that works. A task reaching the last lane has been genuinely tried six ways, and arrives carrying everything the earlier attempts learned — <strong>not as a failure, as a shortlist.</strong></p>
 
     <div class="grid three">
-      <div class="cell"><span class="tag">Flights</span><h3>Bought and read back</h3><p>Fares held, ticketed, then fetched again from the airline before anyone is told it is done.</p></div>
-      <div class="cell"><span class="tag">Hotels</span><h3>Refundable by default</h3><p>It looks for a rate you can walk away from, and asks before committing to one you can't.</p></div>
-      <div class="cell"><span class="tag">Restaurants</span><h3>Actually telephoned</h3><p>Where there is no booking system, there is a phone call — and a policy engine deciding what may be agreed to.</p></div>
-      <div class="cell"><span class="tag">Activities</span><h3>Held at the moment of release</h3><p>Tickets that go on sale at nine are bought at nine, not whenever someone remembers.</p></div>
-      <div class="cell"><span class="tag">Vendors</span><h3>Chased over email</h3><p>It writes, waits days if it has to, reads the reply, and answers it.</p></div>
-      <div class="cell"><span class="tag">Money</span><h3>Never in a prompt</h3><p>Card details never reach a language model. Spending limits are enforced in code, outside anything that reasons.</p></div>
+      <div class="cell"><span class="tag">Air</span><h3>Bought, then read back</h3><p>Fares held, ticketed, then fetched again from the airline before anyone is told it is done.</p></div>
+      <div class="cell"><span class="tag">Rooms</span><h3>Refundable by default</h3><p>It hunts for a rate you can walk away from, and asks before committing to one you cannot.</p></div>
+      <div class="cell"><span class="tag">Tables</span><h3>Actually telephoned</h3><p>Where no booking system exists, there is a phone call — with a policy engine deciding what may be agreed to.</p></div>
+      <div class="cell"><span class="tag">Tickets</span><h3>Bought at the release</h3><p>Tickets that go on sale at nine are bought at nine, not whenever somebody remembers.</p></div>
+      <div class="cell"><span class="tag">Vendors</span><h3>Chased over email</h3><p>It writes, waits days if it must, reads the reply, and answers it.</p></div>
+      <div class="cell"><span class="tag">Money</span><h3>Never in a prompt</h3><p>Card details never reach a language model. Limits are enforced in code, outside anything that reasons.</p></div>
     </div>
   </div>
 </section>
 
 <section id="honest">
   <div class="wrap">
+    <p class="eyebrow">The part nobody advertises</p>
+    <h2>It would rather hand your trip back than lie about it.</h2>
+
     <div class="refusal">
-      <div>
-        <p class="eyebrow" style="color: color-mix(in srgb, var(--paper) 50%, transparent)">The part nobody advertises</p>
-        <h2>It would rather hand your trip back than lie about it.</h2>
-        <p>An autonomous booking agent that is wrong 5% of the time is not 95% useful. It is unusable, because you now have to check all of it — and checking is the work you were trying to avoid.</p>
-        <p>So the whole system is built around one rule: <strong style="color: var(--paper)">an attempt is never a booking.</strong> Nothing is marked confirmed until it has been read back from the supplier. If a payment goes through and the confirmation doesn't, it stops and asks a human rather than risking a second charge.</p>
-        <p>A lane that isn't connected declines. It does not improvise, and it does not guess.</p>
+      <div class="say">
+        <p>An autonomous agent that is wrong five percent of the time is not ninety-five percent useful. It is unusable — because now you have to check all of it, and checking was the work you were trying to avoid.</p>
+        <p>So everything here is built on one rule: <strong>an attempt is never a booking.</strong> Nothing is marked confirmed until it has been read back from the supplier. If money moves and the confirmation does not arrive, it stops and asks a human rather than risk buying twice.</p>
+        <p>A lane that is not connected declines. It does not improvise.</p>
       </div>
       <div class="receipt">
-        <div><span class="k">Le Bristol · 3 nights</span><span class="v ok">booked · read back</span></div>
-        <div><span class="k">AF83 · SFO→CDG</span><span class="v ok">ticketed · QFVGMN</span></div>
-        <div><span class="k">Louvre · private guide</span><span class="v ok">held · pays 09:00</span></div>
+        <div><span class="k">Le Bristol · 3 nights</span><span class="ok">read back</span></div>
+        <div><span class="k">AF83 · SFO→CDG</span><span class="ok">QFVGMN</span></div>
+        <div><span class="k">Louvre · private guide</span><span class="ok">held · 09:00</span></div>
         <hr>
-        <div><span class="k">Clover Gordes</span><span class="v no">handed back</span></div>
-        <div><span class="k">— why</span><span class="v">deposit €180, over your €150</span></div>
-        <div><span class="k">— found</span><span class="v">two tables, both 21:45</span></div>
+        <div><span class="k">Clover Gordes</span><span class="no">handed back</span></div>
+        <div><span class="k">— why</span><span>deposit €180 &gt; €150</span></div>
+        <div><span class="k">— found</span><span>2 tables, both 21:45</span></div>
         <hr>
-        <div><span class="k">false confirmations</span><span class="v ok">0</span></div>
-        <div><span class="k">double bookings</span><span class="v ok">0</span></div>
-        <div><span class="k">charged, nothing held</span><span class="v ok">0</span></div>
+        <div><span class="k">false confirmations</span><span class="ok">0</span></div>
+        <div><span class="k">double bookings</span><span class="ok">0</span></div>
+        <div><span class="k">charged, nothing held</span><span class="ok">0</span></div>
       </div>
     </div>
   </div>
@@ -396,13 +324,12 @@
   <div class="wrap">
     <p class="eyebrow">Under it</p>
     <h2>How a booking is made safe</h2>
-    <p>Every supplier, every lane, and every payment runs the same sequence. It is written once, so a new supplier inherits the care rather than reinventing it.</p>
-
+    <p>Every supplier, lane and payment runs the same sequence. Written once, so a new provider inherits the care instead of reinventing it.</p>
     <div class="steps">
-      <div class="step"><div><h3>Quote before commit</h3><p>The price is known before any money moves. A price that changes between quote and payment stops the booking.</p></div></div>
-      <div class="step"><div><h3>The policy decides, not the model</h3><p>Times, deposits, cancellation terms and party size are checked by code. The agent reports what it was offered; it does not get a vote.</p></div></div>
-      <div class="step"><div><h3>Pay, then commit</h3><p>Funds are authorised and held. Only then is the supplier asked to commit, with an idempotency key so a retry cannot buy twice.</p></div></div>
-      <div class="step"><div><h3>Read it back</h3><p>The booking is fetched fresh from the supplier and compared with what was asked for. A mismatch is a failure, however encouraging the response looked.</p></div></div>
+      <div class="step"><div><h3>Quote before commit</h3><p>The price is known before money moves. A price that shifts between quote and payment stops the booking.</p></div></div>
+      <div class="step"><div><h3>The policy decides, not the model</h3><p>Times, deposits, cancellation terms and party size are checked in code. The agent reports what it was offered; it does not get a vote.</p></div></div>
+      <div class="step"><div><h3>Pay, then commit</h3><p>Funds authorised and held. Only then is the supplier asked to commit, with an idempotency key so a retry cannot buy twice.</p></div></div>
+      <div class="step"><div><h3>Read it back</h3><p>The booking is fetched fresh from the supplier and compared against what was asked for. A mismatch is a failure, however encouraging the response looked.</p></div></div>
       <div class="step"><div><h3>Unwind cleanly</h3><p>If anything downstream fails, the hold is cancelled and the money refunded — and the refund is recorded, not assumed.</p></div></div>
     </div>
   </div>
@@ -413,14 +340,13 @@
     <p class="eyebrow">Wired in</p>
     <h2>Real systems, not a demo</h2>
     <p>Ashore holds accounts with the systems that actually take bookings, and speaks each one's protocol properly — signatures, idempotency keys, two-phase commits and all.</p>
-
     <div class="grid two">
-      <div class="cell"><span class="tag">Air</span><h3>Duffel</h3><p>Offer requests, orders, and order retrieval for the read-back.</p></div>
-      <div class="cell"><span class="tag">Rooms</span><h3>Nuitée · LiteAPI</h3><p>Rates, prebook, book — walking past rates the supplier won't honour.</p></div>
+      <div class="cell"><span class="tag">Flights</span><h3>Duffel</h3><p>Offer requests, orders, and order retrieval for the read-back.</p></div>
+      <div class="cell"><span class="tag">Hotels</span><h3>Nuitée · LiteAPI</h3><p>Rates, prebook, book — walking past rates the supplier will not honour.</p></div>
       <div class="cell"><span class="tag">Experiences</span><h3>TourCMS</h3><p>Signed requests against live operator inventory and real cancellation policy.</p></div>
-      <div class="cell"><span class="tag">Payments</span><h3>Stripe</h3><p>Manual capture, 3-D Secure, and a ledger the model cannot reach.</p></div>
-      <div class="cell"><span class="tag">Correspondence</span><h3>Resend</h3><p>Outbound mail and signed inbound webhooks, threaded to the task that sent them.</p></div>
-      <div class="cell"><span class="tag">Voice</span><h3>Live telephony</h3><p>Real-time speech in both directions, with the reservation policy held outside the voice.</p></div>
+      <div class="cell"><span class="tag">Payments</span><h3>Stripe</h3><p>Manual capture, 3-D Secure, and a ledger no model can reach.</p></div>
+      <div class="cell"><span class="tag">Mail</span><h3>Resend</h3><p>Outbound mail and signed inbound webhooks, threaded to the task that sent them.</p></div>
+      <div class="cell"><span class="tag">Voice</span><h3>Live telephony</h3><p>Real-time speech both ways, with the reservation policy held outside the voice.</p></div>
     </div>
   </div>
 </section>
@@ -428,56 +354,53 @@
 <div class="wrap">
   <div class="close">
     <h2>Bring a plan. Any plan.</h2>
-    <p>A document from your travel agent, a spreadsheet you have been adding to for months, a plan somebody's chatbot wrote, or a forwarded pile of confirmation emails. Ashore reads it, works out what has to happen, and starts.</p>
-    <div class="cta">
-      <a class="button" href="#ladder">Hand over a trip</a>
-      <a class="button ghost" href="#honest">See what it refuses</a>
-    </div>
+    <p>A document from your travel agent, a spreadsheet you have added to for months, something a chatbot wrote, or a pile of forwarded confirmations. Ashore reads it, works out what has to happen, and starts.</p>
+    <div class="cta"><a class="btn" href="#ladder">Hand over a trip</a></div>
   </div>
-
   <footer>
-    <span>Ashore — the part after the plan.</span>
+    <span>ASHORE</span>
     <span>An attempt is never a booking.</span>
   </footer>
 </div>
 
 <script>
-  /* The ladder resolves once on load: the product's mechanism, demonstrated
-     rather than described. Each rung declines in turn until one catches. */
   (function () {
-    const rungs = Array.from(document.querySelectorAll("[data-rung]"));
-    const caughtAt = 4; /* the telephone */
-    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var lanes = Array.prototype.slice.call(document.querySelectorAll("[data-lane]"));
+    var clock = document.querySelector("[data-clock]");
+    var CAUGHT = 4; /* the telephone */
+    var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const settle = () => {
-      rungs.forEach((rung) => rung.classList.remove("lit", "caught"));
+    function stamp(ms) {
+      var t = new Date(Date.now() + ms);
+      return t.toTimeString().slice(0, 8);
+    }
+
+    function run() {
+      lanes.forEach(function (l) { l.className = "lane"; });
+      if (clock) clock.textContent = stamp(0);
       if (still) {
-        rungs.forEach((rung, index) => rung.classList.add(index === caughtAt ? "caught" : "lit"));
+        lanes.forEach(function (l, i) { l.className = i === CAUGHT ? "lane hit" : "lane on"; });
+        if (clock) clock.textContent = "settled";
         return;
       }
-      rungs.forEach((rung, index) => {
-        window.setTimeout(() => {
-          rung.classList.add(index === caughtAt ? "caught" : "lit");
-        }, 380 + index * 460);
+      lanes.forEach(function (l, i) {
+        window.setTimeout(function () {
+          l.className = i === CAUGHT ? "lane hit" : "lane on";
+          if (clock) clock.textContent = i === lanes.length - 1 ? "settled" : stamp(i * 900);
+        }, 420 + i * 520);
       });
-    };
-
-    const button = document.querySelector("[data-replay]");
-    if (button) button.addEventListener("click", settle);
-
-    /* Start when it is actually on screen, not while it is still below the fold. */
-    const target = document.getElementById("ladder");
-    if (target && "IntersectionObserver" in window) {
-      const watcher = new IntersectionObserver((entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          settle();
-          watcher.disconnect();
-        }
-      }, { threshold: 0.35 });
-      watcher.observe(target);
-    } else {
-      settle();
     }
+
+    var btn = document.querySelector("[data-replay]");
+    if (btn) btn.addEventListener("click", run);
+
+    var target = document.getElementById("ladder");
+    if (target && "IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) {
+        if (es.some(function (e) { return e.isIntersecting; })) { run(); io.disconnect(); }
+      }, { threshold: 0.3 });
+      io.observe(target);
+    } else { run(); }
   })();
 </script>
 </body>
