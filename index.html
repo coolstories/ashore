@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Readyway</title>
-<meta name="description" content="Readyway is the part after the plan. It makes the calls, sends the emails, holds the rooms and pays the deposits — and when it can't, it says so.">
+<title>Ashore</title>
+<meta name="description" content="Ashore is the part after the plan. It makes the calls, sends the emails, holds the rooms and pays the deposits — and when it can't, it says so.">
 <meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://ashore.travel/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127903;</text></svg>">
-<meta property="og:title" content="Readyway">
-<meta property="og:description" content="Your trip is planned. Nobody has booked it. Readyway is the part after the plan.">
+<meta property="og:title" content="Ashore">
+<meta property="og:description" content="Your trip is planned. Nobody has booked it. Ashore is the part after the plan.">
+<meta property="og:url" content="https://ashore.travel/">
 <meta property="og:type" content="website">
 <style>
-  /* A hosted page has no reset behind it, unlike the artifact host. */
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body { margin: 0; }
@@ -261,6 +262,18 @@
   .close p { margin: 0 auto; max-width: 34rem; color: var(--soft); }
   .close .cta { justify-content: center; }
 
+  .origin {
+    margin: 2.25rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--faint);
+    max-width: 42ch;
+  }
+  .origin b { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); }
+  .origin i { font-style: italic; color: var(--soft); }
+
   footer {
     border-top: 1px solid var(--rule); padding: 2rem 0 3rem;
     display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
@@ -271,7 +284,7 @@
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="mark">Ready<span>way</span></div>
+    <div class="mark">A<span>shore</span></div>
     <nav>
       <a href="#ladder">How it works</a>
       <a href="#honest">Honesty</a>
@@ -283,11 +296,12 @@
     <div>
       <h1>Your trip is planned. <em>Nobody has booked it.</em></h1>
       <p class="lede">Every travel tool ends at a beautiful itinerary. Then someone — you — spends a fortnight on hold, refreshing release pages, and emailing a hotel in another timezone about connecting rooms.</p>
-      <p class="lede">Readyway is the part after the plan. It makes the calls, sends the emails, holds the rooms, and pays the deposits. And when it can't, it says so.</p>
+      <p class="lede">Ashore is the part after the plan. It makes the calls, sends the emails, holds the rooms, and pays the deposits. And when it can't, it says so.</p>
       <div class="cta">
         <a class="button" href="#connected">See what it books</a>
         <a class="button ghost" href="#honest">Read the honest part</a>
       </div>
+      <p class="origin"><b>ashore</b> · the word for arriving. Not the crossing, not the plan — the moment the journey is behind you and you are simply <i>there</i>.</p>
     </div>
 
     <div class="ladder" id="ladder">
@@ -338,7 +352,7 @@
     <p class="eyebrow">The idea</p>
     <h2>Booking is not one problem. It is seven.</h2>
     <p>Some things have an API. Some have a website that changes every quarter. Some have a person who answers a phone at eleven in the morning and nothing else. A tool that only knows one of those can only book a slice of your trip.</p>
-    <p>Readyway tries each in turn and stops at the first that works. A task that reaches the last rung has been genuinely attempted six ways, and arrives with everything the earlier attempts learned attached to it — <strong>not as a failure, as a shortlist.</strong></p>
+    <p>Ashore tries each in turn and stops at the first that works. A task that reaches the last rung has been genuinely attempted six ways, and arrives with everything the earlier attempts learned attached to it — <strong>not as a failure, as a shortlist.</strong></p>
 
     <div class="grid three">
       <div class="cell"><span class="tag">Flights</span><h3>Bought and read back</h3><p>Fares held, ticketed, then fetched again from the airline before anyone is told it is done.</p></div>
@@ -398,7 +412,7 @@
   <div class="wrap">
     <p class="eyebrow">Wired in</p>
     <h2>Real systems, not a demo</h2>
-    <p>Readyway holds accounts with the systems that actually take bookings, and speaks each one's protocol properly — signatures, idempotency keys, two-phase commits and all.</p>
+    <p>Ashore holds accounts with the systems that actually take bookings, and speaks each one's protocol properly — signatures, idempotency keys, two-phase commits and all.</p>
 
     <div class="grid two">
       <div class="cell"><span class="tag">Air</span><h3>Duffel</h3><p>Offer requests, orders, and order retrieval for the read-back.</p></div>
@@ -414,7 +428,7 @@
 <div class="wrap">
   <div class="close">
     <h2>Bring a plan. Any plan.</h2>
-    <p>A document from your travel agent, a spreadsheet you have been adding to for months, a plan somebody's chatbot wrote, or a forwarded pile of confirmation emails. Readyway reads it, works out what has to happen, and starts.</p>
+    <p>A document from your travel agent, a spreadsheet you have been adding to for months, a plan somebody's chatbot wrote, or a forwarded pile of confirmation emails. Ashore reads it, works out what has to happen, and starts.</p>
     <div class="cta">
       <a class="button" href="#ladder">Hand over a trip</a>
       <a class="button ghost" href="#honest">See what it refuses</a>
@@ -422,7 +436,7 @@
   </div>
 
   <footer>
-    <span>Readyway — the part after the plan.</span>
+    <span>Ashore — the part after the plan.</span>
     <span>An attempt is never a booking.</span>
   </footer>
 </div>

@@ -1,6 +1,6 @@
-# Readyway
+# Ashore
 
-The marketing site for Readyway — the part of travel that happens after the plan.
+The marketing site for Ashore — the part of travel that happens after the plan.
 
 `index.html` is the whole site: one self-contained document with no build step,
 no dependencies, and nothing fetched from another host. Open it in a browser to
@@ -8,7 +8,7 @@ work on it.
 
 ## Publishing it
 
-The repository is private and nothing is being served yet. To put it online with
+The repository is private. The domain ashore.travel is registered; point it here when you publish. To put it online with
 GitHub Pages:
 
 ```sh
@@ -16,7 +16,7 @@ gh repo edit --visibility public --accept-visibility-change-consequences
 gh api -X POST repos/:owner/:repo/pages -f 'source[branch]=main' -f 'source[path]=/'
 ```
 
-It will appear at `https://<owner>.github.io/readyway/` within a minute or two.
+It will appear at `https://<owner>.github.io/ashore/` within a minute or two.
 
 ## Before it goes public
 
