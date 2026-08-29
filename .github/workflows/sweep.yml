@@ -1,0 +1,54 @@
+name: Ashore scheduler
+
+# Calls the execution sweep, which finds every trip with work that has come due
+# and advances it. Without something on an interval, a task scheduled for 09:00
+# sits still until somebody opens the console.
+#
+# It lives here rather than in vercel.json because a Vercel Hobby account is
+# capped at one cron run per day, and a scheduler that runs daily cannot wake a
+# task that came due this morning. See docs/scheduler.md in the app repo.
+#
+# A vendor replying by email does not wait for this: the inbound webhook wakes
+# that task and ticks its plan immediately. This covers time-based work.
+
+on:
+  schedule:
+    # Five minutes is the finest GitHub Actions offers. Scheduled runs are
+    # best-effort and can be delayed under load, which is why the sweep is
+    # idempotent — running late costs nothing, running twice does nothing.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Never two sweeps at once. Each one advances real bookings.
+  group: ashore-sweep
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Advance every trip with work due
+        env:
+          ENDPOINT: ${{ secrets.ASHORE_SWEEP_URL }}
+          SECRET: ${{ secrets.ASHORE_SCHEDULER_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ENDPOINT:-}" ] || [ -z "${SECRET:-}" ]; then
+            echo "::error::ASHORE_SWEEP_URL or ASHORE_SCHEDULER_SECRET is not set."
+            exit 1
+          fi
+          # --fail-with-body so a 401 is a failed run rather than a green tick
+          # over a scheduler that has been silently unauthorised for a week.
+          response=$(curl -sS --fail-with-body --max-time 60 \
+            -H "Authorization: Bearer ${SECRET}" \
+            "${ENDPOINT}")
+          echo "$response"
+          echo "$response" | grep -q '"sweptAt"' || {
+            echo "::error::The sweep answered, but not with a sweep result."
+            exit 1
+          }
