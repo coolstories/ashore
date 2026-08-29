@@ -7,351 +7,246 @@
 <meta name="description" content="Your trip is planned. Nobody has booked it. Ashore calls, writes, holds and pays — and the moment it is unsure, it stops and tells you.">
 <meta name="color-scheme" content="light dark">
 <link rel="canonical" href="https://ashore.travel/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%2315171B%22/><circle cx=%2250%22 cy=%2250%22 r=%2217%22 fill=%22%230E7C67%22/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%23121418%22/><circle cx=%2250%22 cy=%2250%22 r=%2217%22 fill=%22%230D7C66%22/></svg>">
 <meta property="og:title" content="Ashore">
 <meta property="og:description" content="Your trip is planned. Nobody has booked it.">
 <meta property="og:url" content="https://ashore.travel/">
 <meta property="og:type" content="website">
+<style>html{-webkit-text-size-adjust:100%}img,svg{max-width:100%}button{font:inherit}</style>
 <style>
-  html { -webkit-text-size-adjust: 100%; }
-  img, svg { max-width: 100%; }
-  button { font: inherit; }
-</style>
-<style>
-  /* ============================================================
-     Light, spacious, expensive. Colour is reserved for state —
-     the system's own three signals — so it means something when
-     it appears. Both themes defined at token level.
-     ============================================================ */
   :root {
-    --paper:   #FBFBFA;
-    --card:    #FFFFFF;
-    --sunk:    #F4F4F2;
-    --ink:     #15171B;
-    --body:    #5B6270;
-    --faint:   #949AA6;
-    --line:    #E7E7E4;
-    --hair:    #F0F0EE;
-
-    --go:      #0E7C67;
-    --go-soft: #E6F3F0;
-    --wait:    #A9740E;
-    --wait-soft:#FBF0DC;
-    --back:    #B7452F;
-    --back-soft:#FBE9E4;
-
-    --lift-1: 0 1px 2px rgba(20,22,26,.05), 0 4px 12px rgba(20,22,26,.04);
-    --lift-2: 0 2px 4px rgba(20,22,26,.05), 0 12px 32px rgba(20,22,26,.07);
-    --lift-3: 0 4px 8px rgba(20,22,26,.06), 0 24px 64px rgba(20,22,26,.10);
-
-    --sans: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-    --ease: cubic-bezier(.16,1,.3,1);
+    --paper:#FCFCFB; --card:#FFFFFF; --sunk:#F5F5F3;
+    --ink:#121418; --body:#585F6C; --faint:#9AA0AB;
+    --line:#E8E8E5; --hair:#F1F1EF;
+    --go:#0D7C66; --go-soft:#E4F2EF;
+    --wait:#B07C10; --wait-soft:#FBF1DC;
+    --back:#B84630; --back-soft:#FBE9E5;
+    --lift1:0 1px 2px rgba(18,20,24,.05),0 4px 14px rgba(18,20,24,.04);
+    --lift2:0 2px 6px rgba(18,20,24,.06),0 18px 44px rgba(18,20,24,.08);
+    --lift3:0 6px 14px rgba(18,20,24,.07),0 36px 90px rgba(18,20,24,.12);
+    --sans:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --ease:cubic-bezier(.16,1,.3,1);
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #0C0E12; --card: #14171D; --sunk: #101318;
-      --ink: #EEF1F6; --body: #A2AAB8; --faint: #6F7789;
-      --line: #232833; --hair: #1B1F28;
-      --go: #4ECFB0; --go-soft: #102E29;
-      --wait: #E0AC55; --wait-soft: #2E2513;
-      --back: #F08A73; --back-soft: #33201C;
-      --lift-1: 0 1px 2px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
-      --lift-2: 0 2px 4px rgba(0,0,0,.45), 0 12px 32px rgba(0,0,0,.4);
-      --lift-3: 0 4px 8px rgba(0,0,0,.5), 0 24px 64px rgba(0,0,0,.55);
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #0C0E12; --card: #14171D; --sunk: #101318;
-    --ink: #EEF1F6; --body: #A2AAB8; --faint: #6F7789;
-    --line: #232833; --hair: #1B1F28;
-    --go: #4ECFB0; --go-soft: #102E29;
-    --wait: #E0AC55; --wait-soft: #2E2513;
-    --back: #F08A73; --back-soft: #33201C;
-    --lift-1: 0 1px 2px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
-    --lift-2: 0 2px 4px rgba(0,0,0,.45), 0 12px 32px rgba(0,0,0,.4);
-    --lift-3: 0 4px 8px rgba(0,0,0,.5), 0 24px 64px rgba(0,0,0,.55);
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#0B0D11; --card:#13161C; --sunk:#0F1217;
+    --ink:#EDF0F5; --body:#A0A8B6; --faint:#6C7484;
+    --line:#222732; --hair:#1A1E26;
+    --go:#4FD0B1; --go-soft:#0F2E28;
+    --wait:#E2AE57; --wait-soft:#2D2412;
+    --back:#F28C74; --back-soft:#33201B;
+    --lift1:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    --lift2:0 2px 6px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.4);
+    --lift3:0 6px 14px rgba(0,0,0,.5),0 36px 90px rgba(0,0,0,.55);
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0B0D11; --card:#13161C; --sunk:#0F1217;
+    --ink:#EDF0F5; --body:#A0A8B6; --faint:#6C7484;
+    --line:#222732; --hair:#1A1E26;
+    --go:#4FD0B1; --go-soft:#0F2E28;
+    --wait:#E2AE57; --wait-soft:#2D2412;
+    --back:#F28C74; --back-soft:#33201B;
+    --lift1:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);
+    --lift2:0 2px 6px rgba(0,0,0,.45),0 18px 44px rgba(0,0,0,.4);
+    --lift3:0 6px 14px rgba(0,0,0,.5),0 36px 90px rgba(0,0,0,.55);
   }
 
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font-family: var(--sans); font-size: 17px; line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
-  a { color: inherit; }
-  ::selection { background: var(--go-soft); }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:70rem;margin:0 auto;padding:0 1.5rem}
+  a{color:inherit}
+  ::selection{background:var(--go-soft)}
 
-  /* ---------- reveal ---------- */
-  .rise { opacity: 0; transform: translateY(22px); }
-  @media (prefers-reduced-motion: no-preference) {
-    .rise { transition: opacity .8s var(--ease), transform .8s var(--ease); }
-  }
-  .rise.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .rise { opacity: 1; transform: none; } }
+  .rise{opacity:0;transform:translateY(20px)}
+  @media (prefers-reduced-motion:no-preference){.rise{transition:opacity .75s var(--ease),transform .75s var(--ease)}}
+  .rise.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rise{opacity:1;transform:none}}
 
-  /* ---------- nav ---------- */
-  nav.bar {
-    position: sticky; top: 0; z-index: 40;
-    backdrop-filter: saturate(180%) blur(14px);
-    background: color-mix(in srgb, var(--paper) 82%, transparent);
-    border-bottom: 1px solid var(--hair);
-  }
-  nav.bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
-  .mark { font-weight: 700; letter-spacing: -0.02em; font-size: 1.12rem; }
-  .mark b { color: var(--go); font-weight: 700; }
-  .navlinks { display: none; gap: 2rem; font-size: .93rem; color: var(--body); }
-  .navlinks a { text-decoration: none; }
-  .navlinks a:hover { color: var(--ink); }
-  @media (min-width: 52rem) { .navlinks { display: flex; } }
+  /* nav */
+  nav.bar{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(16px);
+    background:color-mix(in srgb,var(--paper) 80%,transparent);border-bottom:1px solid var(--hair)}
+  nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .mark{font-weight:700;letter-spacing:-.025em;font-size:1.1rem}
+  .mark b{color:var(--go)}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.92rem;padding:.6rem 1.05rem;
+    border-radius:9px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);white-space:nowrap}
+  @media (prefers-reduced-motion:no-preference){.btn{transition:transform .25s var(--ease),box-shadow .25s var(--ease)}}
+  .btn:hover{transform:translateY(-2px);box-shadow:var(--lift2)}
+  .btn.soft{background:var(--card);color:var(--ink);border-color:var(--line)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--go);outline-offset:3px;border-radius:6px}
 
-  .btn {
-    display: inline-block; text-decoration: none; font-weight: 600; font-size: .93rem;
-    padding: .62rem 1.1rem; border-radius: 9px; background: var(--ink); color: var(--paper);
-    border: 1px solid var(--ink); white-space: nowrap;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .btn { transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: var(--lift-2); }
-  .btn.soft { background: var(--card); color: var(--ink); border-color: var(--line); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--go); outline-offset: 3px; border-radius: 6px; }
+  /* hero */
+  .hero{padding:6rem 0 3rem;text-align:center}
+  h1{font-size:clamp(2.8rem,7vw,5rem);line-height:.97;letter-spacing:-.045em;font-weight:700;
+    margin:0 auto 1.5rem;max-width:15ch;text-wrap:balance}
+  h1 em{font-style:normal;color:var(--faint)}
+  .lede{font-size:clamp(1.05rem,1.8vw,1.2rem);color:var(--body);max-width:42ch;margin:0 auto}
+  .cta{display:flex;gap:.7rem;justify-content:center;margin-top:2.2rem;flex-wrap:wrap}
 
-  /* ---------- hero ---------- */
-  .hero { padding: 6.5rem 0 4rem; text-align: center; }
-  h1 {
-    font-size: clamp(2.9rem, 7.2vw, 5.2rem); line-height: .98; letter-spacing: -.045em;
-    font-weight: 700; margin: 0 auto 1.6rem; max-width: 15ch; text-wrap: balance;
-  }
-  h1 em { font-style: normal; color: var(--faint); }
-  .lede { font-size: clamp(1.06rem, 1.9vw, 1.24rem); color: var(--body); max-width: 44ch; margin: 0 auto; }
-  .herocta { display: flex; gap: .7rem; justify-content: center; margin-top: 2.4rem; flex-wrap: wrap; }
-  .undercta { margin-top: 1rem; font-size: .84rem; color: var(--faint); }
+  /* ========== THE PIPELINE ========== */
+  .rig{margin:4rem auto 0;max-width:64rem;background:var(--card);border:1px solid var(--line);
+    border-radius:20px;box-shadow:var(--lift3);overflow:hidden}
+  .rigbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.2rem;
+    border-bottom:1px solid var(--hair);background:var(--sunk)}
+  .job{display:flex;align-items:center;gap:.6rem;font-size:.9rem;font-weight:600;letter-spacing:-.01em}
+  .job i{width:7px;height:7px;border-radius:50%;background:var(--wait);flex:none}
+  @media (prefers-reduced-motion:no-preference){.job i{animation:bl 1.2s steps(2,end) infinite}
+    @keyframes bl{50%{opacity:.25}}}
+  .job.done i{background:var(--go);animation:none}
+  .rigbar em{font-family:var(--mono);font-size:.7rem;color:var(--faint);font-style:normal;letter-spacing:.06em}
 
-  /* ---------- the stage: a plan becoming bookings ---------- */
-  .stage {
-    margin: 4.5rem auto 0; max-width: 62rem;
-    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-    box-shadow: var(--lift-3); overflow: hidden;
-  }
-  .stagebar {
-    display: flex; align-items: center; gap: .5rem; padding: .8rem 1.1rem;
-    border-bottom: 1px solid var(--hair); background: var(--sunk);
-  }
-  .pip { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
-  .stagebar span {
-    margin-left: .6rem; font-family: var(--mono); font-size: .72rem; color: var(--faint); letter-spacing: .04em;
-  }
-  .stagegrid { display: grid; }
-  @media (min-width: 56rem) { .stagegrid { grid-template-columns: 0.9fr 1.1fr; } }
+  .track{position:relative;padding:2.8rem 1.5rem 1.2rem}
+  .rail{position:absolute;left:calc(1.5rem + 22px);right:calc(1.5rem + 22px);top:3.55rem;height:2px;background:var(--line);border-radius:2px}
+  .rail .fill{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--go),var(--wait));border-radius:2px}
+  @media (prefers-reduced-motion:no-preference){.rail .fill{transition:width 1.1s var(--ease)}}
 
-  .plan { padding: 1.6rem; border-bottom: 1px solid var(--hair); }
-  @media (min-width: 56rem) { .plan { border-bottom: 0; border-right: 1px solid var(--hair); } }
-  .plan h4, .out h4 {
-    margin: 0 0 1rem; font-family: var(--mono); font-size: .68rem; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--faint); font-weight: 600;
-  }
-  .planline {
-    font-size: .87rem; color: var(--body); padding: .42rem 0; border-bottom: 1px dashed var(--hair);
-    display: flex; gap: .6rem;
-  }
-  .planline b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; min-width: 3.6rem; }
+  .stops{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem}
+  .stop{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-align:center}
+  .bulb{width:44px;height:44px;border-radius:50%;background:var(--card);border:2px solid var(--line);
+    display:grid;place-items:center;position:relative;z-index:2;color:var(--faint)}
+  @media (prefers-reduced-motion:no-preference){
+    .bulb{transition:border-color .45s var(--ease),color .45s var(--ease),transform .45s var(--ease),box-shadow .45s var(--ease)}}
+  .bulb svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .stop .nm{font-size:.8rem;font-weight:600;letter-spacing:-.01em}
+  .stop .vd{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);min-height:1em}
 
-  .out { padding: 1.6rem; background: var(--sunk); }
-  .task {
-    background: var(--card); border: 1px solid var(--line); border-radius: 11px;
-    padding: .78rem .9rem; margin-bottom: .6rem; display: flex; align-items: center; gap: .8rem;
-    opacity: 0; transform: translateX(14px);
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .task { transition: opacity .55s var(--ease), transform .55s var(--ease), box-shadow .3s var(--ease); }
-  }
-  .task.in { opacity: 1; transform: none; }
-  .task:hover { box-shadow: var(--lift-1); }
-  .task .what { flex: 1; min-width: 0; }
-  .task .what strong { display: block; font-size: .9rem; font-weight: 600; letter-spacing: -.01em; }
-  .task .what span { font-size: .78rem; color: var(--faint); }
-  .chip {
-    font-family: var(--mono); font-size: .62rem; letter-spacing: .09em; text-transform: uppercase;
-    font-weight: 700; padding: .3rem .5rem; border-radius: 5px; white-space: nowrap;
-    background: var(--sunk); color: var(--faint);
-  }
-  @media (prefers-reduced-motion: no-preference) { .chip { transition: background-color .4s, color .4s; } }
-  .chip.w { background: var(--wait-soft); color: var(--wait); }
-  .chip.g { background: var(--go-soft);   color: var(--go); }
-  .chip.b { background: var(--back-soft); color: var(--back); }
+  .stop.act .bulb{border-color:var(--wait);color:var(--wait);transform:scale(1.12);box-shadow:0 0 0 6px var(--wait-soft)}
+  .stop.miss .bulb{border-color:var(--line);color:var(--faint);opacity:.5}
+  .stop.miss .nm{opacity:.5}
+  .stop.miss .vd{color:var(--back)}
+  .stop.win .bulb{border-color:var(--go);color:var(--go);transform:scale(1.14);box-shadow:0 0 0 8px var(--go-soft)}
+  .stop.win .vd{color:var(--go);font-weight:700}
+  @media (prefers-reduced-motion:no-preference){
+    .stop.act .bulb{animation:hum 1.5s ease-in-out infinite}
+    @keyframes hum{0%,100%{box-shadow:0 0 0 6px var(--wait-soft)}50%{box-shadow:0 0 0 12px transparent}}}
 
-  .spin { width: 8px; height: 8px; border-radius: 50%; background: currentColor; display: inline-block; margin-right: .35rem; vertical-align: 1px; }
-  @media (prefers-reduced-motion: no-preference) {
-    .chip.w .spin { animation: blink 1.1s steps(2,end) infinite; }
-    @keyframes blink { 50% { opacity: .25 } }
-  }
+  /* the call theatre */
+  .call{border-top:1px solid var(--hair);background:var(--sunk);padding:1.2rem 1.5rem;min-height:132px}
+  .wave{display:flex;align-items:center;gap:3px;height:26px;margin-bottom:.85rem;opacity:0}
+  @media (prefers-reduced-motion:no-preference){.wave{transition:opacity .4s}}
+  .wave.on{opacity:1}
+  .wave i{width:3px;height:20%;background:var(--go);border-radius:2px;display:block}
+  @media (prefers-reduced-motion:no-preference){
+    .wave.on i{animation:vu .9s ease-in-out infinite}
+    @keyframes vu{0%,100%{height:18%}50%{height:100%}}}
+  .said{display:flex;flex-direction:column;gap:.34rem;font-size:.88rem}
+  .said p{margin:0;opacity:0;transform:translateY(6px);display:flex;gap:.6rem;align-items:baseline}
+  @media (prefers-reduced-motion:no-preference){.said p{transition:opacity .45s var(--ease),transform .45s var(--ease)}}
+  .said p.in{opacity:1;transform:none}
+  .said b{font-family:var(--mono);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);min-width:4.2rem;flex:none}
+  .said .them{color:var(--body)}
+  .said .us{color:var(--ink);font-weight:500}
 
-  /* ---------- sections ---------- */
-  section { padding: 7rem 0; }
-  section + section { border-top: 1px solid var(--hair); }
-  .eyebrow {
-    font-family: var(--mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
-    color: var(--go); margin: 0 0 1rem; font-weight: 600;
-  }
-  h2 {
-    font-size: clamp(2rem, 4.2vw, 3.05rem); line-height: 1.06; letter-spacing: -.035em;
-    font-weight: 700; margin: 0 0 1.1rem; max-width: 18ch; text-wrap: balance;
-  }
-  .sub { font-size: 1.06rem; color: var(--body); max-width: 52ch; margin: 0; }
-  .center { text-align: center; }
-  .center h2, .center .sub { margin-left: auto; margin-right: auto; }
+  .verdict{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.5rem;border-top:1px solid var(--hair);
+    background:var(--card);font-size:.9rem;opacity:0}
+  @media (prefers-reduced-motion:no-preference){.verdict{transition:opacity .5s var(--ease)}}
+  .verdict.on{opacity:1}
+  .tick{width:22px;height:22px;flex:none}
+  .tick circle{fill:none;stroke:var(--go);stroke-width:2;opacity:.28}
+  .tick path{fill:none;stroke:var(--go);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:26;stroke-dashoffset:26}
+  .verdict.on .tick path{stroke-dashoffset:0}
+  @media (prefers-reduced-motion:no-preference){.verdict.on .tick path{transition:stroke-dashoffset .6s var(--ease) .15s}}
+  .verdict b{font-weight:650}
+  .verdict span{color:var(--faint);font-family:var(--mono);font-size:.76rem;margin-left:auto}
 
-  /* ---------- lane flow ---------- */
-  .flow { display: grid; gap: .7rem; margin-top: 3.5rem; }
-  @media (min-width: 60rem) { .flow { grid-template-columns: repeat(6, 1fr); } }
-  .node {
-    background: var(--card); border: 1px solid var(--line); border-radius: 13px; padding: 1.1rem .95rem;
-    position: relative;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .node { transition: border-color .5s var(--ease), box-shadow .5s var(--ease), transform .5s var(--ease); }
-  }
-  .node .n { font-family: var(--mono); font-size: .66rem; color: var(--faint); letter-spacing: .1em; }
-  .node h5 { margin: .45rem 0 .3rem; font-size: .93rem; font-weight: 650; letter-spacing: -.01em; }
-  .node p { margin: 0; font-size: .79rem; color: var(--faint); line-height: 1.45; }
-  .node.hit { border-color: var(--go); box-shadow: var(--lift-2); transform: translateY(-4px); }
-  .node.hit .n { color: var(--go); }
-  .node.pass { opacity: .55; }
+  /* sections */
+  section{padding:6.5rem 0;border-top:1px solid var(--hair)}
+  .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--go);margin:0 0 1rem;font-weight:600}
+  h2{font-size:clamp(1.95rem,4vw,2.9rem);line-height:1.06;letter-spacing:-.035em;font-weight:700;margin:0 0 1rem;max-width:18ch;text-wrap:balance}
+  .sub{font-size:1.04rem;color:var(--body);max-width:50ch;margin:0}
+  .center{text-align:center}.center h2,.center .sub{margin-left:auto;margin-right:auto}
 
-  /* ---------- cards ---------- */
-  .cards { display: grid; gap: 1rem; margin-top: 3.5rem; }
-  @media (min-width: 46rem) { .cards { grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 68rem) { .cards.three { grid-template-columns: repeat(3,1fr); } }
-  .c {
-    background: var(--card); border: 1px solid var(--line); border-radius: 15px; padding: 1.7rem 1.6rem;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .c { transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
-  }
-  .c:hover { transform: translateY(-4px); box-shadow: var(--lift-2); }
-  .c .tag { font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; color: var(--go); font-weight: 600; }
-  .c h3 { margin: .6rem 0 .45rem; font-size: 1.06rem; font-weight: 650; letter-spacing: -.015em; }
-  .c p { margin: 0; font-size: .92rem; color: var(--body); }
+  .cards{display:grid;gap:1rem;margin-top:3.2rem}
+  @media(min-width:46rem){.cards{grid-template-columns:1fr 1fr}}
+  @media(min-width:66rem){.cards.three{grid-template-columns:repeat(3,1fr)}}
+  .c{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:1.6rem 1.5rem}
+  @media (prefers-reduced-motion:no-preference){.c{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}}
+  .c:hover{transform:translateY(-4px);box-shadow:var(--lift2)}
+  .c .tag{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--go);font-weight:600}
+  .c h3{margin:.55rem 0 .4rem;font-size:1.03rem;font-weight:650;letter-spacing:-.015em}
+  .c p{margin:0;font-size:.9rem;color:var(--body)}
 
-  /* ---------- refusal ---------- */
-  .refuse {
-    margin-top: 3.5rem; background: var(--ink); color: var(--paper);
-    border-radius: 20px; overflow: hidden; display: grid; box-shadow: var(--lift-3);
-  }
-  @media (min-width: 60rem) { .refuse { grid-template-columns: 1fr 1fr; } }
-  .refuse .say { padding: clamp(2rem,4vw,3.2rem); }
-  .refuse .say h2 { color: var(--paper); margin-bottom: 1.2rem; }
-  .refuse .say p { color: color-mix(in srgb, var(--paper) 68%, transparent); margin: 0 0 .9rem; max-width: 40ch; font-size: .98rem; }
-  .refuse .say p:last-child { margin: 0; }
-  .refuse .say strong { color: var(--paper); }
-  .ledger {
-    background: color-mix(in srgb, var(--paper) 6%, transparent);
-    border-left: 1px solid color-mix(in srgb, var(--paper) 12%, transparent);
-    padding: clamp(1.7rem,3vw,2.6rem); font-family: var(--mono); font-size: .8rem; line-height: 2.05;
-  }
-  .ledger div { display: flex; justify-content: space-between; gap: 1.2rem; }
-  .ledger .k { color: color-mix(in srgb, var(--paper) 48%, transparent); }
-  .ledger .ok { color: #4ECFB0; }
-  .ledger .no { color: #F08A73; }
-  .ledger hr { border: 0; border-top: 1px dashed color-mix(in srgb, var(--paper) 18%, transparent); margin: .9rem 0; }
+  .refuse{margin-top:3.2rem;background:var(--ink);color:var(--paper);border-radius:20px;overflow:hidden;display:grid;box-shadow:var(--lift3)}
+  @media(min-width:60rem){.refuse{grid-template-columns:1fr 1fr}}
+  .refuse .say{padding:clamp(2rem,4vw,3rem)}
+  .refuse .say h2{color:var(--paper);margin-bottom:1.1rem}
+  .refuse .say p{color:color-mix(in srgb,var(--paper) 66%,transparent);margin:0 0 .85rem;max-width:40ch;font-size:.97rem}
+  .refuse .say p:last-child{margin:0}
+  .refuse .say strong{color:var(--paper)}
+  .ledger{background:color-mix(in srgb,var(--paper) 6%,transparent);border-left:1px solid color-mix(in srgb,var(--paper) 12%,transparent);
+    padding:clamp(1.7rem,3vw,2.4rem);font-family:var(--mono);font-size:.79rem;line-height:2.05}
+  .ledger div{display:flex;justify-content:space-between;gap:1.2rem}
+  .ledger .k{color:color-mix(in srgb,var(--paper) 46%,transparent)}
+  .ledger .ok{color:#4FD0B1}.ledger .no{color:#F28C74}
+  .ledger hr{border:0;border-top:1px dashed color-mix(in srgb,var(--paper) 18%,transparent);margin:.85rem 0}
 
-  /* ---------- steps ---------- */
-  .steps { margin-top: 3.5rem; max-width: 46rem; }
-  .st { display: grid; grid-template-columns: 2.6rem 1fr; gap: 1.3rem; padding: 1.5rem 0; border-top: 1px solid var(--hair); }
-  .st:first-child { border-top: 0; }
-  .st .num {
-    font-family: var(--mono); font-size: .78rem; color: var(--go); font-variant-numeric: tabular-nums;
-    padding-top: .18rem; font-weight: 600;
-  }
-  .st h3 { margin: 0 0 .3rem; font-size: 1.02rem; font-weight: 650; letter-spacing: -.015em; }
-  .st p { margin: 0; font-size: .93rem; color: var(--body); }
-
-  /* ---------- close ---------- */
-  .close { text-align: center; padding: 8rem 0; }
-  .close h2 { margin: 0 auto 1.1rem; max-width: 16ch; }
-  .close .sub { margin: 0 auto 2.2rem; }
-  footer {
-    border-top: 1px solid var(--hair); padding: 2.2rem 0 3.5rem;
-    display: flex; flex-wrap: wrap; gap: .8rem; justify-content: space-between;
-    font-size: .85rem; color: var(--faint);
-  }
+  .close{text-align:center;padding:7.5rem 0}
+  .close h2{margin:0 auto 1rem;max-width:16ch}
+  .close .sub{margin:0 auto 2rem}
+  footer{border-top:1px solid var(--hair);padding:2rem 0 3.2rem;display:flex;flex-wrap:wrap;gap:.8rem;
+    justify-content:space-between;font-size:.84rem;color:var(--faint)}
 </style>
 </head>
 <body>
-<nav class="bar">
-  <div class="wrap">
-    <div class="mark">Ash<b>o</b>re</div>
-    <div class="navlinks">
-      <a href="#how">How it works</a>
-      <a href="#honest">Honesty</a>
-      <a href="#connected">Connected</a>
-    </div>
-    <a class="btn" href="#start">Hand over a trip</a>
-  </div>
-</nav>
+<nav class="bar"><div class="wrap">
+  <div class="mark">Ash<b>o</b>re</div>
+  <a class="btn" href="#start">Hand over a trip</a>
+</div></nav>
 
 <div class="wrap">
   <div class="hero">
     <h1 class="rise">Your trip is planned.<br><em>Nobody has booked it.</em></h1>
-    <p class="lede rise">Ashore is the part that comes after. It calls, writes, holds and pays — and the moment it is unsure, it stops and tells you.</p>
-    <div class="herocta rise">
+    <p class="lede rise">Ashore is the part that comes after. Watch it work.</p>
+    <div class="cta rise">
       <a class="btn" href="#start">Hand over a trip</a>
       <a class="btn soft" href="#honest">See what it refuses</a>
     </div>
-    <p class="undercta rise">Flights, rooms, tables, tickets, transfers. Real bookings, read back before they count.</p>
   </div>
 
-  <!-- The product, working: a plan on the left, bookings appearing on the right. -->
-  <div class="stage rise" id="stage">
-    <div class="stagebar">
-      <i class="pip"></i><i class="pip"></i><i class="pip"></i>
-      <span data-stamp>france · 8 days · 4 travellers</span>
+  <!-- One booking, travelling the lanes until something catches it. -->
+  <div class="rig rise" id="rig">
+    <div class="rigbar">
+      <div class="job" data-job><i></i>Kaiseki Nakamura · table for 4 · Sat 19:30</div>
+      <em data-elapsed>00:00</em>
     </div>
-    <div class="stagegrid">
-      <div class="plan">
-        <h4>What you hand over</h4>
-        <div class="planline"><b>Sep 1</b><span>Arrive CDG · car to Le Bristol</span></div>
-        <div class="planline"><b>Sep 2</b><span>Louvre, private guide · Seine at sunset</span></div>
-        <div class="planline"><b>Sep 3</b><span>Pastry walk · Perruche, 7.30</span></div>
-        <div class="planline"><b>Sep 4</b><span>TGV first class to Avignon</span></div>
-        <div class="planline"><b>Sep 5</b><span>Roussillon · long lunch somewhere good</span></div>
-        <div class="planline"><b>Sep 8</b><span>Car to Marseille · fly home</span></div>
+
+    <div class="track">
+      <div class="rail"><div class="fill" data-fill></div></div>
+      <div class="stops">
+        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div><div class="nm">API</div><div class="vd" data-vd></div></div>
+        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div><div class="nm">Browser</div><div class="vd" data-vd></div></div>
+        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="nm">Email</div><div class="vd" data-vd></div></div>
+        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></div><div class="nm">Telephone</div><div class="vd" data-vd></div></div>
+        <div class="stop" data-stop><div class="bulb"><svg viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></svg></div><div class="nm">Booked</div><div class="vd" data-vd></div></div>
       </div>
-      <div class="out">
-        <h4>What Ashore does with it</h4>
-        <div class="task" data-task><div class="what"><strong>Le Bristol Paris</strong><span>3 nights · 2 connecting rooms</span></div><div class="chip" data-chip>queued</div></div>
-        <div class="task" data-task><div class="what"><strong>AF83 · SFO → CDG</strong><span>4 seats · business</span></div><div class="chip" data-chip>queued</div></div>
-        <div class="task" data-task><div class="what"><strong>Louvre · private guide</strong><span>Sep 2, 11:00</span></div><div class="chip" data-chip>queued</div></div>
-        <div class="task" data-task><div class="what"><strong>TGV · Paris → Avignon</strong><span>Sep 4, first class</span></div><div class="chip" data-chip>queued</div></div>
-        <div class="task" data-task><div class="what"><strong>Perruche</strong><span>Sep 3, 19:30 · terrace</span></div><div class="chip" data-chip>queued</div></div>
-        <div class="task" data-task><div class="what"><strong>Clover Gordes</strong><span>deposit €180 · over your limit</span></div><div class="chip" data-chip>queued</div></div>
+    </div>
+
+    <div class="call">
+      <div class="wave" data-wave><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="said" data-said>
+        <p><b>venue</b><span class="them">Good evening, Kaiseki Nakamura.</span></p>
+        <p><b>ashore</b><span class="us">Evening — do you have a table for four on Saturday, around half seven?</span></p>
+        <p><b>venue</b><span class="them">Seven thirty is gone. I could do quarter to nine.</span></p>
+        <p><b>ashore</b><span class="us">That's outside what the guest approved. Anything between half six and half eight?</span></p>
+        <p><b>venue</b><span class="them">Eight thirty, then. Under what name?</span></p>
+        <p><b>ashore</b><span class="us">Ada Traveller, four covers. Could you read that back to me?</span></p>
       </div>
+    </div>
+
+    <div class="verdict" data-verdict>
+      <svg class="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.4 3 3 6-6.4"/></svg>
+      <div><b>Booked · 20:30 · four covers</b> — read back from the venue before it counted.</div>
+      <span>NK-4482</span>
     </div>
   </div>
 </div>
 
-<section id="how">
+<section>
   <div class="wrap center">
     <p class="eyebrow rise">The mechanism</p>
-    <h2 class="rise">Booking is not one problem. It is six.</h2>
-    <p class="sub rise">Some venues have an API. Some have a site that changes every quarter. Some have a person who answers a phone at eleven and nothing else. Ashore tries each in order and stops at the first that works.</p>
-    <div class="flow rise" id="flow">
-      <div class="node" data-node><div class="n">01</div><h5>Supplier API</h5><p>Direct, where one exists</p></div>
-      <div class="node" data-node><div class="n">02</div><h5>Known flow</h5><p>A form it has done before</p></div>
-      <div class="node" data-node><div class="n">03</div><h5>Browser agent</h5><p>Works the site out live</p></div>
-      <div class="node" data-node><div class="n">04</div><h5>Email</h5><p>Writes, waits, reads back</p></div>
-      <div class="node" data-node><div class="n">05</div><h5>Telephone</h5><p>Speaks to whoever answers</p></div>
-      <div class="node" data-node><div class="n">06</div><h5>Handed to you</h5><p>With all it learned</p></div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="eyebrow rise">What it handles</p>
-    <h2 class="rise">Everything a trip actually needs.</h2>
+    <h2 class="rise">It tries every way in, and stops at the first that works.</h2>
+    <p class="sub rise">Some venues have an API. Some have a site that changes every quarter. Some have a person who answers a phone at eleven and nothing else. A system that knows one of those can book a fraction of your trip.</p>
     <div class="cards three">
       <div class="c rise"><span class="tag">Air</span><h3>Bought, then read back</h3><p>Fares held, ticketed, then fetched again from the airline before anyone is told it is done.</p></div>
       <div class="c rise"><span class="tag">Rooms</span><h3>Refundable by default</h3><p>It hunts for a rate you can walk away from, and asks before committing to one you cannot.</p></div>
@@ -367,7 +262,7 @@
   <div class="wrap">
     <div class="refuse rise">
       <div class="say">
-        <p class="eyebrow" style="color:#4ECFB0">The part nobody advertises</p>
+        <p class="eyebrow" style="color:#4FD0B1">The part nobody advertises</p>
         <h2>It would rather hand your trip back than lie about it.</h2>
         <p>An autonomous agent that is wrong five percent of the time is not ninety-five percent useful. It is unusable — because now you have to check all of it, and checking was the work you were trying to avoid.</p>
         <p>So everything rests on one rule: <strong>an attempt is never a booking.</strong> Nothing is confirmed until it has been read back from the supplier. If money moves and the confirmation does not arrive, it stops and asks a human rather than risk buying twice.</p>
@@ -380,43 +275,10 @@
         <hr>
         <div><span class="k">Clover Gordes</span><span class="no">handed back</span></div>
         <div><span class="k">— why</span><span>deposit €180 &gt; €150</span></div>
-        <div><span class="k">— found</span><span>2 tables, 21:45</span></div>
         <hr>
         <div><span class="k">false confirmations</span><span class="ok">0</span></div>
         <div><span class="k">double bookings</span><span class="ok">0</span></div>
-        <div><span class="k">charged, nothing held</span><span class="ok">0</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <p class="eyebrow rise">Under it</p>
-    <h2 class="rise">How a booking is made safe.</h2>
-    <p class="sub rise">Every supplier, lane and payment runs the same sequence. Written once, so a new provider inherits the care instead of reinventing it.</p>
-    <div class="steps">
-      <div class="st rise"><div class="num">01</div><div><h3>Quote before commit</h3><p>The price is known before money moves. A price that shifts between quote and payment stops the booking.</p></div></div>
-      <div class="st rise"><div class="num">02</div><div><h3>The policy decides, not the model</h3><p>Times, deposits, cancellation terms and party size are checked in code. The agent reports what it was offered; it does not get a vote.</p></div></div>
-      <div class="st rise"><div class="num">03</div><div><h3>Pay, then commit</h3><p>Funds authorised and held. Only then is the supplier asked to commit, with an idempotency key so a retry cannot buy twice.</p></div></div>
-      <div class="st rise"><div class="num">04</div><div><h3>Read it back</h3><p>The booking is fetched fresh and compared with what was asked for. A mismatch is a failure, however encouraging the response looked.</p></div></div>
-      <div class="st rise"><div class="num">05</div><div><h3>Unwind cleanly</h3><p>If anything downstream fails, the hold is cancelled and the money refunded — and the refund is recorded, not assumed.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="connected">
-  <div class="wrap center">
-    <p class="eyebrow rise">Wired in</p>
-    <h2 class="rise">Real systems, not a demo.</h2>
-    <p class="sub rise">Ashore holds accounts with the systems that actually take bookings, and speaks each one's protocol properly.</p>
-    <div class="cards three">
-      <div class="c rise"><span class="tag">Flights</span><h3>Duffel</h3><p>Offer requests, orders, and order retrieval for the read-back.</p></div>
-      <div class="c rise"><span class="tag">Hotels</span><h3>Nuitée · LiteAPI</h3><p>Rates, prebook, book — walking past rates the supplier will not honour.</p></div>
-      <div class="c rise"><span class="tag">Experiences</span><h3>TourCMS</h3><p>Signed requests against live operator inventory and real cancellation policy.</p></div>
-      <div class="c rise"><span class="tag">Payments</span><h3>Stripe</h3><p>Manual capture, 3-D Secure, and a ledger no model can reach.</p></div>
-      <div class="c rise"><span class="tag">Mail</span><h3>Resend</h3><p>Outbound mail and signed inbound webhooks, threaded to the task that sent them.</p></div>
-      <div class="c rise"><span class="tag">Voice</span><h3>Live telephony</h3><p>Real-time speech both ways, with the reservation policy held outside the voice.</p></div>
     </div>
   </div>
 </section>
@@ -425,87 +287,112 @@
   <div class="close" id="start">
     <h2 class="rise">Bring a plan. Any plan.</h2>
     <p class="sub rise">A document from your travel agent, a spreadsheet you have added to for months, something a chatbot wrote, or a pile of forwarded confirmations. Ashore reads it, works out what has to happen, and starts.</p>
-    <div class="herocta rise"><a class="btn" href="#stage">Hand over a trip</a></div>
+    <div class="cta rise"><a class="btn" href="#rig">Watch it work</a></div>
   </div>
-  <footer>
-    <span>Ashore — the part after the plan.</span>
-    <span>An attempt is never a booking.</span>
-  </footer>
+  <footer><span>Ashore — the part after the plan.</span><span>An attempt is never a booking.</span></footer>
 </div>
 
 <script>
 (function () {
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Scroll reveals, staggered within each section. */
   if ("IntersectionObserver" in window) {
-    var seen = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var peers = Array.prototype.slice.call(e.target.parentNode.querySelectorAll(".rise"));
+        var peers = [].slice.call(e.target.parentNode.querySelectorAll(".rise"));
         var i = Math.max(0, peers.indexOf(e.target));
-        window.setTimeout(function () { e.target.classList.add("in"); }, still ? 0 : Math.min(i, 6) * 70);
-        seen.unobserve(e.target);
+        setTimeout(function () { e.target.classList.add("in"); }, still ? 0 : Math.min(i, 6) * 70);
+        io.unobserve(e.target);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    document.querySelectorAll(".rise").forEach(function (n) { seen.observe(n); });
-  } else {
-    document.querySelectorAll(".rise").forEach(function (n) { n.classList.add("in"); });
+    }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".rise").forEach(function (n) { io.observe(n); });
+  } else { document.querySelectorAll(".rise").forEach(function (n) { n.classList.add("in"); }); }
+
+  var stops = [].slice.call(document.querySelectorAll("[data-stop]"));
+  var vds   = [].slice.call(document.querySelectorAll("[data-vd]"));
+  var lines = [].slice.call(document.querySelectorAll("[data-said] p"));
+  var wave  = document.querySelector("[data-wave]");
+  var fill  = document.querySelector("[data-fill]");
+  var job   = document.querySelector("[data-job]");
+  var elapsed = document.querySelector("[data-elapsed]");
+  var verdict = document.querySelector("[data-verdict]");
+
+  wave.querySelectorAll("i").forEach(function (b, i) { b.style.animationDelay = (i * 60) + "ms"; });
+
+  var MISS = ["no api", "no slot", "no reply", "", ""];
+  var T = [], t0 = 0, tick = null;
+
+  function reset() {
+    T.forEach(clearTimeout); T = []; clearInterval(tick);
+    stops.forEach(function (s) { s.className = "stop"; });
+    vds.forEach(function (v) { v.textContent = ""; });
+    lines.forEach(function (l) { l.classList.remove("in"); });
+    wave.classList.remove("on");
+    verdict.classList.remove("on");
+    job.classList.remove("done");
+    fill.style.width = "0%";
+    elapsed.textContent = "00:00";
   }
 
-  /* The stage: tasks arrive, work, and settle — including one that is handed back. */
-  var tasks = Array.prototype.slice.call(document.querySelectorAll("[data-task]"));
-  var chips = Array.prototype.slice.call(document.querySelectorAll("[data-chip]"));
-  var END = ["booked", "ticketed", "held", "seats 4", "confirmed", "handed back"];
-  var CLS = ["g", "g", "g", "g", "g", "b"];
-  var timers = [];
+  function at(ms, fn) { T.push(setTimeout(fn, ms)); }
 
-  function settle() {
-    timers.forEach(clearTimeout); timers = [];
-    tasks.forEach(function (t, i) {
-      t.classList.remove("in");
-      chips[i].className = "chip"; chips[i].textContent = "queued";
-    });
+  function play() {
+    reset();
     if (still) {
-      tasks.forEach(function (t, i) {
-        t.classList.add("in");
-        chips[i].className = "chip " + CLS[i]; chips[i].textContent = END[i];
-      });
+      stops.forEach(function (s, i) { s.className = "stop " + (i < 3 ? "miss" : "win"); });
+      vds.forEach(function (v, i) { v.textContent = i < 3 ? MISS[i] : (i === 3 ? "booked" : "confirmed"); });
+      lines.forEach(function (l) { l.classList.add("in"); });
+      fill.style.width = "100%"; job.classList.add("done");
+      verdict.classList.add("on"); elapsed.textContent = "00:41";
       return;
     }
-    tasks.forEach(function (t, i) {
-      timers.push(setTimeout(function () { t.classList.add("in"); }, 260 + i * 150));
-      timers.push(setTimeout(function () {
-        chips[i].className = "chip w";
-        chips[i].innerHTML = '<i class="spin"></i>working';
-      }, 900 + i * 420));
-      timers.push(setTimeout(function () {
-        chips[i].className = "chip " + CLS[i];
-        chips[i].textContent = END[i];
-      }, 2100 + i * 520));
+
+    t0 = Date.now();
+    tick = setInterval(function () {
+      var s = Math.floor((Date.now() - t0) / 250);
+      elapsed.textContent = "00:" + String(Math.min(s, 41)).padStart(2, "0");
+    }, 250);
+
+    /* Three lanes decline in turn. */
+    [0, 1, 2].forEach(function (i) {
+      at(400 + i * 1000, function () {
+        stops[i].className = "stop act";
+        fill.style.width = (i * 25 + 12) + "%";
+      });
+      at(1050 + i * 1000, function () {
+        stops[i].className = "stop miss";
+        vds[i].textContent = MISS[i];
+      });
     });
+
+    /* The telephone picks it up. */
+    at(3400, function () { stops[3].className = "stop act"; fill.style.width = "76%"; wave.classList.add("on"); });
+    lines.forEach(function (l, i) { at(3800 + i * 1150, function () { l.classList.add("in"); }); });
+
+    at(10800, function () {
+      wave.classList.remove("on");
+      stops[3].className = "stop win"; vds[3].textContent = "booked";
+      fill.style.width = "100%";
+    });
+    at(11300, function () {
+      stops[4].className = "stop win"; vds[4].textContent = "confirmed";
+      job.classList.add("done");
+      verdict.classList.add("on");
+      clearInterval(tick); elapsed.textContent = "00:41";
+    });
+
+    /* Breathe, then run it again. */
+    at(17500, play);
   }
 
-  /* The lane flow: each declines until the telephone catches it. */
-  var nodes = Array.prototype.slice.call(document.querySelectorAll("[data-node]"));
-  function walk() {
-    nodes.forEach(function (n) { n.className = "node"; });
-    if (still) { nodes.forEach(function (n, i) { n.className = i === 4 ? "node hit" : "node pass"; }); return; }
-    nodes.forEach(function (n, i) {
-      setTimeout(function () { n.className = i === 4 ? "node hit" : "node pass"; }, 300 + i * 430);
-    });
-  }
-
-  function once(el, fn) {
-    if (!el) return;
-    if (!("IntersectionObserver" in window)) { fn(); return; }
-    var io = new IntersectionObserver(function (es) {
-      if (es.some(function (e) { return e.isIntersecting; })) { fn(); io.disconnect(); }
-    }, { threshold: 0.25 });
-    io.observe(el);
-  }
-  once(document.getElementById("stage"), settle);
-  once(document.getElementById("flow"), walk);
+  var rig = document.getElementById("rig");
+  if (rig && "IntersectionObserver" in window) {
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { play(); } else { T.forEach(clearTimeout); clearInterval(tick); } });
+    }, { threshold: .25 });
+    ro.observe(rig);
+  } else { play(); }
 })();
 </script>
 </body>
